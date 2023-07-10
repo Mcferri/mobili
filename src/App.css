@@ -1,0 +1,27 @@
+:root {
+  --inputBgColor: rgb(237, 237, 237);
+}
+
+.input_field {
+  background-color: var(--inputBgColor);
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  padding: 5px;
+}
+.input_field:focus {
+  outline: none;
+}
+.label {
+  font-size: 12px;
+  display: block;
+}
+
+.app_button {
+  background-color: rgb(85, 22, 22);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 13px;
+  padding: 5px 20px;
+}
