@@ -17,7 +17,7 @@ export default function Payment() {
   }
   return (
     <div className="p-3">
-      {JSON.stringify(payment)}
+      {/* {JSON.stringify(payment)} */}
       <h4>Payment</h4>
       <div>
         <label className="label">Card Number</label>
