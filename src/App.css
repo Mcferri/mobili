@@ -3,8 +3,8 @@
 }
 
 .input_field {
-  background-color: var(--inputBgColor);
-  border: none;
+  background-color: white;
+  border: 1px solid #dee2e6;
   border-radius: 5px;
   width: 100%;
   padding: 5px;
@@ -19,10 +19,24 @@
 }
 
 .app_button {
-  background-color: rgb(85, 22, 22);
+  background-color: #0d6efd;
   color: white;
   border: none;
   border-radius: 5px;
   font-size: 13px;
   padding: 5px 20px;
+}
+
+.auth {
+  width: 100% !important;
+}
+.app_button_second {
+  border: none;
+  background-color: white;
+  color: #0d6efd;
+}
+
+.forgot_p{
+  color: #0d6efd;
+  font-size: 13px;
 }
