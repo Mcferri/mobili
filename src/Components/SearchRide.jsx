@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function SearchRide() {
   const formData = {
@@ -15,12 +16,20 @@ export default function SearchRide() {
 
   const handleSubmit = () => {
     console.log(searchData)
+    navigate('/search-results')
   }
+  const navigate = useNavigate()
+
   return (
-    <div className="p-3">
+    <div className="p-3 mt-5">
       {/* {JSON.stringify(searchData)} */}
-      <h4>Search for ride</h4>
-      <div className="d-flex" style={{ gap: 10 }}>
+      <h4 className="text-center" style={{ fontWeight: 900, fontSize: 40 }}>
+        Search for ride
+      </h4>
+      <div
+        className="mt-3 d-flex justify-content-center search_ride_inputs_div"
+        style={{ gap: 10 }}
+      >
         <div>
           <label className="label">From</label>
           <input
@@ -62,10 +71,15 @@ export default function SearchRide() {
           />
         </div>
       </div>
-
-      <button className="app_button" onClick={handleSubmit}>
-        Submit
-      </button>
+      <div className="m-0 text-center mt-3">
+        <button
+          className="app_button"
+          onClick={handleSubmit}
+          style={{ padding: '20px 40px' }}
+        >
+          GO
+        </button>
+      </div>
     </div>
   )
 }

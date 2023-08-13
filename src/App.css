@@ -7,7 +7,7 @@
   border: 1px solid #dee2e6;
   border-radius: 5px;
   width: 100%;
-  padding: 5px;
+  padding: 10px;
   display: inline;
 }
 .input_field:focus {
@@ -17,7 +17,9 @@
   font-size: 12px;
   display: block;
 }
-
+.textarea_ {
+  resize: none;
+}
 .app_button {
   background-color: #0d6efd;
   color: white;
@@ -25,6 +27,11 @@
   border-radius: 5px;
   font-size: 13px;
   padding: 5px 20px;
+}
+.report_text {
+  color: #0d6efd;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .auth {
@@ -36,7 +43,110 @@
   color: #0d6efd;
 }
 
-.forgot_p{
+.forgot_p {
   color: #0d6efd;
   font-size: 13px;
+}
+.logo {
+  font-weight: 900;
+}
+.navbar_ {
+  padding: 10px 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.844);
+}
+
+.fullname {
+  font-weight: 500;
+}
+.about {
+  margin-top: 5px;
+  font-size: 13px;
+}
+.email,
+.phone,
+.date_joined,
+.years {
+  color: grey;
+  margin: 0;
+}
+.profile_pic {
+  border-radius: 50%;
+  width: 200px;
+}
+
+.date_joined {
+  color: #0d6efd;
+}
+.from_to {
+  font-weight: 500;
+  margin: 0;
+}
+.rides_avail {
+  font-weight: 700;
+}
+.results_card {
+  border-radius: 20px !important;
+  border: none !important;
+  background-color: rgb(255, 255, 255) !important;
+}
+.profile {
+  border-radius: 50%;
+  width: 40px;
+}
+.results_date {
+  font-weight: 800;
+  font-size: 20px;
+}
+.results_card {
+  cursor: pointer;
+}
+.results_card:hover {
+  background-color: rgb(250, 250, 250) !important;
+}
+.divider {
+  background-color: rgb(237, 237, 237);
+  width: 100%;
+  padding: 3px;
+}
+.hr {
+  color: rgb(157, 157, 157);
+}
+.second_app_button {
+  color: black;
+  background-color: #f1f1f1;
+}
+.ride_details_user:hover {
+  cursor: pointer;
+}
+.ride_details_user:hover p,
+.ride_details_user:hover .arrow,
+.ride_details_user:hover span {
+  color: #0d6efd;
+}
+.ride_details_user span {
+  color: grey;
+}
+@media (max-width: 575.98px) {
+  .profile_div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .about {
+    font-size: 14px;
+  }
+  .profile_div_button {
+    font-size: 14px;
+  }
+  .search_ride_inputs_div {
+    display: flex;
+    flex-direction: column;
+  }
+  .search_ride_inputs_div input {
+    width: 100% !important;
+  }
 }
