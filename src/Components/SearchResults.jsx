@@ -9,7 +9,6 @@ export default function SearchResults() {
   const navigate = useNavigate();
   return (
     <div className="p-3 mt-5">
-      {/* {JSON.stringify(publishRide)} */}
       <h4 className="text-center" style={{ fontWeight: 900, fontSize: 40 }}>
         Available rides
       </h4>
@@ -22,9 +21,9 @@ export default function SearchResults() {
               Kano, Nigeria <BsArrowRight size="1.5rem" /> Jigawa, Nigeria
             </p>
             <p className="rides_avail">5 rides available</p>
-          </div>
+          </div>{" "}
           <Card
-            className="results_card shadow-sm p-3"
+            className="mb-3 results_card shadow-sm p-3"
             onClick={() => navigate("/ride-details")}
           >
             <Row>
@@ -57,22 +56,22 @@ export default function SearchResults() {
                     className="result profile"
                     alt="profile_pic"
                   />{" "}
-                  <div style={{ display: "flex", flexDirection: "column" }}>
-                    <p className="m-0" style={{ fontWeight: "bold" }}>
+                  <div
+                    style={{ display: "flex", alignItems: "center", gap: 10 }}
+                  >
+                    <p
+                      className="m-0 text-secondary"
+                      style={{ fontWeight: "bold" }}
+                    >
                       Mike John{" "}
                     </p>
                     <span
                       style={{
                         color: "grey",
                         fontWeight: "normal",
-                        fontSize: 12,
                       }}
                     >
-                      <AiFillStar
-                        color="grey"
-                        // size="rem"
-                        className="m-0"
-                      />{" "}
+                      <AiFillStar color="grey" size="1rem" className="m-0" />{" "}
                       5.0
                     </span>
                   </div>
@@ -80,7 +79,7 @@ export default function SearchResults() {
               </Col>
               <Col md={6}></Col>
             </Row>
-          </Card>
+          </Card>{" "}
         </Col>
         <Col md={3}></Col>
       </Row>

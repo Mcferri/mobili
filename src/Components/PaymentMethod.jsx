@@ -19,23 +19,22 @@ export default function RideDetails() {
         <Col md={3}></Col>
         <Col md={6} className="">
           <div>
-            <input
-              type="text"
-              className="input_field"
-              placeholder="Cardholder name"
-            />
+            <label className="label">Card holder name</label>
+            <input type="text" className="input_field" />
           </div>
           <div className="mt-3">
-            <input
-              type="number"
-              className="input_field"
-              placeholder="Card number"
-            />
+            <label className="label">Card number</label>
+            <input type="number" className="input_field" />
           </div>
-          <div className="mt-3 d-flex" style={{ gap: 20 }}>
-            <input type="" className="input_field" placeholder="MM/YY" />
-
-            <input type="number" className="input_field" placeholder="CVV" />
+          <div className="" style={{ gap: 20, display: "flex" }}>
+            <div className="w-100">
+              <label className="label mt-3">Expiry - MM/YY</label>
+              <input type="" className="input_field" />
+            </div>
+            <div className="w-100">
+              <label className="label mt-3">CVV</label>
+              <input type="number" className="input_field" />
+            </div>
           </div>
           <hr className="hr" />
           <div>
