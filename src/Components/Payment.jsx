@@ -1,23 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 export default function Payment() {
   const formData = {
-    cardNumber: '',
-    cvv: '',
-    expiryDate: '',
-  }
-  const [payment, setPayment] = useState(formData)
+    cardNumber: "",
+    cvv: "",
+    expiryDate: "",
+  };
+  const [payment, setPayment] = useState(formData);
 
   const handleChange = (e) => {
-    setPayment({ ...payment, [e.target.name]: e.target.value })
-  }
+    setPayment({ ...payment, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = () => {
-    console.log(payment)
-  }
+    console.log(payment);
+  };
   return (
     <div className="p-3">
-      {/* {JSON.stringify(payment)} */}
       <h4>Payment</h4>
       <div>
         <label className="label">Card Number</label>
@@ -49,10 +48,10 @@ export default function Payment() {
           onChange={handleChange}
         />
       </div>
-    
+
       <button className="app_button" onClick={handleSubmit}>
         Submit
       </button>
     </div>
-  )
+  );
 }

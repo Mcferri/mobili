@@ -1,14 +1,9 @@
 import React, { useState } from "react";
-import { BsArrowRight } from "react-icons/bs";
-import { Card, Col, Container, Row } from "reactstrap";
-import profile from "../assets/images/profile.png";
-import { useNavigate, useParams } from "react-router-dom";
-import icon from "../assets/images/path.png";
-import { AiFillStar } from "react-icons/ai";
-import { MdArrowForwardIos } from "react-icons/md";
+import { Col, Row } from "reactstrap";
+import { useNavigate } from "react-router-dom";
 import { useQuery } from "../helpers/helpers";
 export default function WriteReport() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const query = useQuery();
 
   const type = query.get("report_type");

@@ -22,12 +22,11 @@ export default function SearchRide() {
 
   return (
     <div className="p-3 mt-5">
-      {/* {JSON.stringify(searchData)} */}
       <h4 className="text-center" style={{ fontWeight: 900, fontSize: 40 }}>
         Search for ride
       </h4>
       <div
-        className="mt-3 d-flex justify-content-center search_ride_inputs_div"
+        className="mt-5 d-flex justify-content-center search_ride_inputs_div"
         style={{ gap: 10 }}
       >
         <div>

@@ -4,7 +4,6 @@ import { Col, Row } from "reactstrap";
 function Profile() {
   return (
     <div className="p-3 mt-5">
-      {/* {JSON.stringify(publishRide)} */}
       <h4 className="text-center" style={{ fontWeight: 900, fontSize: 40 }}>
         Profile
       </h4>
@@ -15,7 +14,6 @@ function Profile() {
             className="d-flex align-items-center justify-content-center profile_div"
             style={{ gap: 30 }}
           >
-            {/* <div className='d-flex align-items-center justify-content-center' style={{gap:30}}> */}
             <div>
               <img
                 src={profilePicture}

@@ -1,25 +1,21 @@
 import React from "react";
-import { BsArrowRight, BsShieldFillCheck } from "react-icons/bs";
-import { Card, Col, Row } from "reactstrap";
+import { BsShieldFillCheck } from "react-icons/bs";
+import { Col, Row } from "reactstrap";
 import icon from "../assets/images/path.png";
 import profile from "../assets/images/profile.png";
 import { AiFillCar, AiFillStar } from "react-icons/ai";
 import { MdArrowForwardIos, MdAddCall } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-// import {IoMdCall} from 'react-icons/io'
 export default function RideDetails() {
   const navigate = useNavigate();
   return (
     <div className="p-3 mt-5">
-      {/* {JSON.stringify(publishRide)} */}
       <h4 className="text-center" style={{ fontWeight: 900, fontSize: 40 }}>
         Sun, 9 July
       </h4>
-      <Row className="mt-4">
+      <Row className="mt-5">
         <Col md={3}></Col>
         <Col md={6} className="">
-          {/* <div> */}
-
           <div className="d-flex" style={{ gap: 10 }}>
             <div>
               <p className="rides_avail">12:00 AM</p>
@@ -69,6 +65,7 @@ export default function RideDetails() {
                       src={profile}
                       className="result profile"
                       alt="profile_pic"
+                      style={{ marginRight: 20 }}
                     />{" "}
                     <MdArrowForwardIos size="1.2rem" className="arrow" />
                   </div>

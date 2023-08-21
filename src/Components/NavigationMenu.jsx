@@ -1,33 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Col, Dropdown, DropdownMenu, DropdownToggle, Row } from "reactstrap";
 import profilePicture from "../assets/images/profile.PNG";
-import { BsBell, BsBellFill, BsPlus } from "react-icons/bs";
+import { BsPlus } from "react-icons/bs";
 import { TbLogout } from "react-icons/tb";
 import { PiCarSimpleLight } from "react-icons/pi";
-import {
-  AiFillBell,
-  AiFillCar,
-  AiFillNotification,
-  AiOutlineBell,
-  AiOutlineUser,
-} from "react-icons/ai";
+import { AiOutlineBell, AiOutlineUser } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import {
   MdOutlineKeyboardArrowDown,
   MdOutlineKeyboardArrowRight,
-  MdOutlineKeyboardArrowUp,
 } from "react-icons/md";
+
 export default function NavigationMenu() {
-  // const userId = useParams()
+  
   const [dropdown, setDropdown] = useState(false);
+
+  //nav dropdown function
   const showDropdown = () => {
     setDropdown(!dropdown);
   };
-
-  const navigateTo = (route) => {
-    useNavigate(route);
-    // showDropdown(!dropdown);
-  };
+  
   const navigate = useNavigate();
   return (
     <div>
@@ -35,7 +27,7 @@ export default function NavigationMenu() {
         <Col lg={3} md={3} sm={3} xs={3} className="d-flex align-items-center">
           <p className="logo m-0" onClick={() => navigate("/home")}>
             Mobeelii
-          </p>  
+          </p>
         </Col>
         <Col
           lg={9}
@@ -45,11 +37,6 @@ export default function NavigationMenu() {
           className="d-flex align-items-center justify-content-end"
           style={{ gap: 10 }}
         >
-          {/* <BsPlus
-            style={{ margin: 0 }}
-            size="1rem"
-            onClick={() => navigate(`/publish-ride`)}
-          /> */}
           <button
             className="app_button pub_web"
             onClick={() => navigate(`/publish-ride`)}
@@ -71,25 +58,13 @@ export default function NavigationMenu() {
           <AiOutlineBell
             style={{ margin: 0, cursor: "pointer" }}
             size="1.6rem"
-
-            // onClick={() => navigate(`/profile`)}
           />
-          {/* <AiOutlineUser
-            style={{ margin: 0, cursor: "pointer" }}
-            size="1.6rem"
-            onClick={() => navigate(`/profile`)}
-          /> */}
           <img
             src={profilePicture}
             className="result profile"
             alt="profile_pic"
             style={{ width: 30, cursor: "pointer" }}
           />
-          {/* <MdOutlineKeyboardArrowUp
-            size={30}
-            className="text-secondary"
-            style={{ cursor: "pointer" }}
-          /> */}
           <Dropdown
             className="profile_dropdown_body"
             toggle={showDropdown}
@@ -104,6 +79,7 @@ export default function NavigationMenu() {
             </DropdownToggle>
             <DropdownMenu className="shadow profile_dropdown">
               <div
+                onClick={() => navigate("/your-rides")}
                 style={{ gap: 10 }}
                 className="profile_drop_item d-flex justify-content-between align-items-center"
               >
@@ -119,11 +95,10 @@ export default function NavigationMenu() {
                 </div>
               </div>
               <hr />
-
               <div
                 style={{ gap: 10 }}
                 onClick={() => {
-                  navigateTo("/profile");
+                  navigate("/profile");
                 }}
                 className="profile_drop_item d-flex justify-content-between align-items-center"
               >
@@ -139,7 +114,6 @@ export default function NavigationMenu() {
                 </div>
               </div>
               <hr />
-
               <div
                 style={{ gap: 10 }}
                 className="profile_drop_item d-flex justify-content-between align-items-center"
@@ -172,7 +146,6 @@ export default function NavigationMenu() {
                 </div>
               </div>
               <hr />
-
               <div
                 style={{ gap: 10 }}
                 className="profile_drop_item d-flex justify-content-between align-items-center"

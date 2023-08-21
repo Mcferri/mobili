@@ -1,12 +1,6 @@
 import React from "react";
-import { BsArrowRight, BsShieldFillCheck } from "react-icons/bs";
-import { Card, Col, Row } from "reactstrap";
-import icon from "../assets/images/path.png";
-import profile from "../assets/images/profile.png";
-import { AiFillCar, AiFillStar } from "react-icons/ai";
-import { MdArrowForwardIos, MdAddCall } from "react-icons/md";
+import { Col, Row } from "reactstrap";
 import { useNavigate } from "react-router-dom";
-// import {IoMdCall} from 'react-icons/io'
 export default function RideDetails() {
   const navigate = useNavigate();
   return (
@@ -15,7 +9,7 @@ export default function RideDetails() {
       <h4 className="text-center" style={{ fontWeight: 900, fontSize: 40 }}>
         Enter your credit card details
       </h4>
-      <Row className="mt-4">
+      <Row className="mt-5">
         <Col md={3}></Col>
         <Col md={6} className="">
           <div>

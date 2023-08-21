@@ -1,29 +1,19 @@
 import React from "react";
-import { BsArrowRight, BsShieldFillCheck } from "react-icons/bs";
-import { Card, Col, Row } from "reactstrap";
+import { Col, Row } from "reactstrap";
 import icon from "../assets/images/path.png";
-import profile from "../assets/images/profile.png";
-import { AiFillCar, AiFillStar } from "react-icons/ai";
-import { MdArrowForwardIos, MdAddCall } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-// import {IoMdCall} from 'react-icons/io'
 export default function BookRide() {
   const navigate = useNavigate();
   return (
     <div className="p-3 mt-5">
-      {/* {JSON.stringify(publishRide)} */}
       <h4 className="text-center" style={{ fontWeight: 900, fontSize: 40 }}>
         Review and book
       </h4>
       <Row>
         <Col md={3}></Col>
-        <Col md={6} className="mt-4">
+        <Col md={6} className="mt-5">
           <p className="rides_avail">Tue, 15 August at 12:00</p>
           <div className="d-flex" style={{ gap: 10 }}>
-            {/* <div>
-              <p className="rides_avail">12:00 AM</p>
-              <p className="rides_avail">12:30 AM</p>
-            </div> */}
             <div>
               <img src={icon} style={{ width: 13 }} />
             </div>

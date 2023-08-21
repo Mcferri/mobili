@@ -13,6 +13,7 @@ import ReportRide from "../Components/ReportRide";
 import BookRide from "../Components/BookRide";
 import WriteReport from "../Components/WriteReport";
 import PaymentMethod from "../Components/PaymentMethod";
+import YourRides from "../Components/YourRides";
 
 function AppNavigation() {
   let element = useRoutes([
@@ -68,6 +69,10 @@ function AppNavigation() {
         {
           path: "/payment-method",
           element: <PaymentMethod />,
+        },
+        {
+          path: "/your-rides",
+          element: <YourRides />,
         },
       ],
     },

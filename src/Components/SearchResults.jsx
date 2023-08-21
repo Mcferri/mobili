@@ -15,7 +15,7 @@ export default function SearchResults() {
       <Row>
         <Col md={3}></Col>
         <Col md={6}>
-          <div className="mt-4">
+          <div className="mt-5">
             <p className="results_date">Fri, 21 Jul</p>
             <p className="from_to">
               Kano, Nigeria <BsArrowRight size="1.5rem" /> Jigawa, Nigeria

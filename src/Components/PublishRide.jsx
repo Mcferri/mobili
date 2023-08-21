@@ -6,28 +6,24 @@ export default function PublishRide() {
     date: "",
     from: "",
     to: "",
-    timeFrom: "",
-    timeTo: "",
+    time: "",
     price: "",
-    carType: "",
-    carName: "",
-    carModel: "",
-    carColor: "",
-    carImage: "",
+    gender: "",
     seatsAvailable: "",
   };
   const [publishRide, setPublishRide] = useState(formData);
 
+  //handle function
   const handleChange = (e) => {
     setPublishRide({ ...publishRide, [e.target.name]: e.target.value });
   };
 
+  //handle submit
   const handleSubmit = () => {
     console.log(publishRide);
   };
   return (
     <div className="p-3 mt-5">
-      {/* {JSON.stringify(publishRide)} */}
       <h4 className="text-center" style={{ fontWeight: 900, fontSize: 40 }}>
         Publish ride
       </h4>
@@ -36,7 +32,7 @@ export default function PublishRide() {
         <Col xl={4} lg={4} md={4} sm={12} xs={12}>
           <Row>
             <Col md={6} className="mt-3">
-              <label className="label">Date</label>
+              <label className="label">When are you leaving?</label>
               <input
                 className="input_field"
                 type="date"
@@ -46,27 +42,7 @@ export default function PublishRide() {
               />
             </Col>
             <Col md={6} className="mt-3">
-              <label className="label">From</label>
-              <input
-                className="input_field"
-                type="text"
-                name="from"
-                value={publishRide.from}
-                onChange={handleChange}
-              />
-            </Col>
-            <Col md={6} className="mt-3">
-              <label className="label">To</label>
-              <input
-                className="input_field"
-                type="text"
-                name="to"
-                value={publishRide.to}
-                onChange={handleChange}
-              />
-            </Col>
-            <Col md={6} className="mt-3">
-              <label className="label">Time From</label>
+              <label className="label">When's the passenger pickup time?</label>
               <input
                 className="input_field"
                 type="time"
@@ -76,17 +52,41 @@ export default function PublishRide() {
               />
             </Col>
             <Col md={6} className="mt-3">
-              <label className="label">Time To</label>
+              <label className="label">Leaving from</label>
               <input
                 className="input_field"
-                type="time"
-                name="timeTo"
-                value={publishRide.timeTo}
+                type="text"
+                name="from"
+                value={publishRide.from}
                 onChange={handleChange}
               />
             </Col>
             <Col md={6} className="mt-3">
-              <label className="label">Price</label>
+              <label className="label">Going to</label>
+              <input
+                className="input_field"
+                type="text"
+                name="to"
+                value={publishRide.to}
+                onChange={handleChange}
+              />
+            </Col>
+
+            <Col md={6} className="mt-3">
+              <label className="label">Gender</label>
+              <select
+                className="input_field"
+                name="gender"
+                value={publishRide.gender}
+                onChange={handleChange}
+              >
+                <option>select gender</option>
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+            </Col>
+            <Col md={6} className="mt-3">
+              <label className="label">Price per seat</label>
               <input
                 className="input_field"
                 type="number"
@@ -96,62 +96,7 @@ export default function PublishRide() {
               />
             </Col>
             <Col md={6} className="mt-3">
-              <label className="label">Car Type</label>
-              <select
-                className="input_field"
-                name="carType"
-                value={publishRide.carType}
-                onChange={handleChange}
-              >
-                <option>select car type</option>
-                <option>Sedan</option>
-                <option>SUV</option>
-                <option>Bus</option>
-              </select>
-            </Col>
-            <Col md={6} className="mt-3">
-              <label className="label">Car Name</label>
-              <input
-                className="input_field"
-                type="text"
-                name="carName"
-                value={publishRide.carName}
-                onChange={handleChange}
-              />
-            </Col>
-
-            <Col md={6} className="mt-3">
-              <label className="label">Car Model</label>
-              <input
-                className="input_field"
-                type="text"
-                name="carModel"
-                value={publishRide.carModel}
-                onChange={handleChange}
-              />
-            </Col>
-            <Col md={6} className="mt-3">
-              <label className="label">Car Color</label>
-              <input
-                className="input_field"
-                type="text"
-                name="carColor"
-                value={publishRide.carColor}
-                onChange={handleChange}
-              />
-            </Col>
-            <Col md={6} className="mt-3">
-              <label className="label">Car Image</label>
-              <input
-                className="input_field"
-                type="text"
-                name="carImage"
-                value={publishRide.carImage}
-                onChange={handleChange}
-              />
-            </Col>
-            <Col md={6} className="mt-3">
-              <label className="label">Available Seats</label>
+              <label className="label">Number of Seats</label>
               <input
                 className="input_field"
                 type="number"
