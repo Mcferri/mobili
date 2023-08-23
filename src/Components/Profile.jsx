@@ -1,5 +1,5 @@
 import React from "react";
-import profilePicture from "../assets/images/profile.PNG";
+//https://res.cloudinary.com/dx5ilizca/image/upload/v1692800347/profile_epnaqt.png
 import { Col, Row } from "reactstrap";
 function Profile() {
   return (

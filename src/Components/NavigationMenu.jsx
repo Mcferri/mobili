@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Col, Dropdown, DropdownMenu, DropdownToggle, Row } from "reactstrap";
-import profilePicture from "../assets/images/profile.PNG";
+//https://res.cloudinary.com/dx5ilizca/image/upload/v1692800347/profile_epnaqt.png
 import { BsPlus } from "react-icons/bs";
 import { TbLogout } from "react-icons/tb";
 import { PiCarSimpleLight } from "react-icons/pi";
