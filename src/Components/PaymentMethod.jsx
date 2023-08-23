@@ -5,7 +5,6 @@ export default function RideDetails() {
   const navigate = useNavigate();
   return (
     <div className="p-3 mt-5">
-      {/* {JSON.stringify(publishRide)} */}
       <h4 className="text-center" style={{ fontWeight: 900, fontSize: 40 }}>
         Enter your credit card details
       </h4>

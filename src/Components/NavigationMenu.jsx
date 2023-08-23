@@ -12,14 +12,13 @@ import {
 } from "react-icons/md";
 
 export default function NavigationMenu() {
-  
   const [dropdown, setDropdown] = useState(false);
 
   //nav dropdown function
   const showDropdown = () => {
     setDropdown(!dropdown);
   };
-  
+
   const navigate = useNavigate();
   return (
     <div>
@@ -53,7 +52,7 @@ export default function NavigationMenu() {
             className="app_button second_app_button"
             onClick={() => navigate(`/ride-requests`)}
           >
-            Requests
+            Ride requests
           </button>
           <AiOutlineBell
             style={{ margin: 0, cursor: "pointer" }}
@@ -84,7 +83,24 @@ export default function NavigationMenu() {
                 className="profile_drop_item d-flex justify-content-between align-items-center"
               >
                 <div>
-                  <PiCarSimpleLight className="text-secondary" /> Your rides{" "}
+                  <PiCarSimpleLight className="text-secondary" /> Rides{" "}
+                </div>
+                <div>
+                  <MdOutlineKeyboardArrowRight
+                    size={30}
+                    className="text-secondary"
+                    style={{ cursor: "pointer" }}
+                  />
+                </div>
+              </div>
+              <hr />
+              <div
+                onClick={() => navigate("/your-rides")}
+                style={{ gap: 10 }}
+                className="profile_drop_item d-flex justify-content-between align-items-center"
+              >
+                <div>
+                  <PiCarSimpleLight className="text-secondary" /> My requests{" "}
                 </div>
                 <div>
                   <MdOutlineKeyboardArrowRight
