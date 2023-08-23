@@ -16,7 +16,7 @@ function Profile() {
           >
             <div>
               <img
-                src={profilePicture}
+                src="https://res.cloudinary.com/dx5ilizca/image/upload/v1692800347/profile_epnaqt.png"
                 className="profile_pic"
                 alt="user_image"
               />

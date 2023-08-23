@@ -59,7 +59,7 @@ export default function NavigationMenu() {
             size="1.6rem"
           />
           <img
-            src={profilePicture}
+            src="https://res.cloudinary.com/dx5ilizca/image/upload/v1692800347/profile_epnaqt.png"
             className="result profile"
             alt="profile_pic"
             style={{ width: 30, cursor: "pointer" }}
