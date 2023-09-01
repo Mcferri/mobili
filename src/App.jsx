@@ -1,17 +1,19 @@
-import { useState } from 'react'
+import { useState } from "react";
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
 // import { Button } from 'reactstrap'
 // import PublishRide from './Components/PublishRide'
 // import Payment from './Components/Payment'
 // import SearchRide from './Components/SearchRide'
 // import SignUp from './Components/SignUp'
-import AppNavigation from './routes/AppNavigation'
+import AppNavigation from "./routes/AppNavigation";
+import store from "./redux/store";
+import { Provider } from "react-redux";
 // import SignUpp from './Components/SignUpp'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <div>
@@ -20,9 +22,11 @@ function App() {
       <SearchRide/>
       <SignUp/> */}
       {/* <SignUpp /> */}
-      <AppNavigation />
+      <Provider store={store}>
+        <AppNavigation />
+      </Provider>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

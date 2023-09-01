@@ -8,7 +8,7 @@ import { AiOutlineBell, AiOutlineUser } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import {
   MdOutlineKeyboardArrowDown,
-  MdOutlineKeyboardArrowRight,
+  MdKeyboardArrowRight,
 } from "react-icons/md";
 
 export default function NavigationMenu() {
@@ -19,12 +19,25 @@ export default function NavigationMenu() {
     setDropdown(!dropdown);
   };
 
+  const logout = () => {
+    const keysToRemove = ["access_token", "user_data"];
+
+    // Loop through the keys and remove each item
+    keysToRemove.forEach((key) => {
+      localStorage.removeItem(key);
+    });
+    localStorage.removeItem("access_token");
+    if (!localStorage.getItem("access_token" && "user_data")) {
+      navigate("/auth");
+    }
+  };
+
   const navigate = useNavigate();
   return (
     <div>
       <Row className="m-0 navbar_ shadow-sm">
         <Col lg={3} md={3} sm={3} xs={3} className="d-flex align-items-center">
-          <p className="logo m-0" onClick={() => navigate("/home")}>
+          <p className="logo m-0" onClick={() => navigate("/")}>
             Mobeelii
           </p>
         </Col>
@@ -76,17 +89,18 @@ export default function NavigationMenu() {
                 style={{ cursor: "pointer" }}
               />
             </DropdownToggle>
-            <DropdownMenu className="shadow profile_dropdown">
+            <DropdownMenu className="shadow profile_dropdown p-3">
               <div
                 onClick={() => navigate("/your-rides")}
                 style={{ gap: 10 }}
                 className="profile_drop_item d-flex justify-content-between align-items-center"
               >
                 <div>
-                  <PiCarSimpleLight className="text-secondary" /> Rides{" "}
+                  {/* <PiCarSimpleLight className="text-secondary" /> */}
+                  Published rides{" "}
                 </div>
                 <div>
-                  <MdOutlineKeyboardArrowRight
+                  <MdKeyboardArrowRight
                     size={30}
                     className="text-secondary"
                     style={{ cursor: "pointer" }}
@@ -100,10 +114,29 @@ export default function NavigationMenu() {
                 className="profile_drop_item d-flex justify-content-between align-items-center"
               >
                 <div>
-                  <PiCarSimpleLight className="text-secondary" /> My requests{" "}
+                  {/* <PiCarSimpleLight className="text-secondary" /> */}
+                  My requests{" "}
                 </div>
                 <div>
-                  <MdOutlineKeyboardArrowRight
+                  <MdKeyboardArrowRight
+                    size={30}
+                    className="text-secondary"
+                    style={{ cursor: "pointer" }}
+                  />
+                </div>
+              </div>
+              <hr />
+              <div
+                onClick={() => navigate("/your-rides")}
+                style={{ gap: 10 }}
+                className="profile_drop_item d-flex justify-content-between align-items-center"
+              >
+                <div>
+                  {/* <PiCarSimpleLight className="text-secondary" /> */}
+                  My cars{" "}
+                </div>
+                <div>
+                  <MdKeyboardArrowRight
                     size={30}
                     className="text-secondary"
                     style={{ cursor: "pointer" }}
@@ -119,10 +152,11 @@ export default function NavigationMenu() {
                 className="profile_drop_item d-flex justify-content-between align-items-center"
               >
                 <div>
-                  <AiOutlineUser className="text-secondary" /> Profile{" "}
+                  {/* <AiOutlineUser className="text-secondary" /> */}
+                  Profile{" "}
                 </div>
                 <div>
-                  <MdOutlineKeyboardArrowRight
+                  <MdKeyboardArrowRight
                     size={30}
                     className="text-secondary"
                     style={{ cursor: "pointer" }}
@@ -135,10 +169,11 @@ export default function NavigationMenu() {
                 className="profile_drop_item d-flex justify-content-between align-items-center"
               >
                 <div>
-                  <AiOutlineUser className="text-secondary" /> Chats{" "}
+                  {/* <AiOutlineUser className="text-secondary" /> */}
+                  Chats{" "}
                 </div>
                 <div>
-                  <MdOutlineKeyboardArrowRight
+                  <MdKeyboardArrowRight
                     size={30}
                     className="text-secondary"
                     style={{ cursor: "pointer" }}
@@ -151,10 +186,11 @@ export default function NavigationMenu() {
                 className="profile_drop_item d-flex justify-content-between align-items-center"
               >
                 <div>
-                  <AiOutlineUser className="text-secondary" /> Payment & refunds{" "}
+                  {/* <AiOutlineUser className="text-secondary" /> */}
+                  Payment & refunds{" "}
                 </div>
                 <div>
-                  <MdOutlineKeyboardArrowRight
+                  <MdKeyboardArrowRight
                     size={30}
                     className="text-secondary"
                     style={{ cursor: "pointer" }}
@@ -165,12 +201,14 @@ export default function NavigationMenu() {
               <div
                 style={{ gap: 10 }}
                 className="profile_drop_item d-flex justify-content-between align-items-center"
+                onClick={logout}
               >
                 <div>
-                  <TbLogout className="text-secondary" /> Logout{" "}
+                  {/* <TbLogout className="text-secondary" /> */}
+                  Logout{" "}
                 </div>
                 <div>
-                  <MdOutlineKeyboardArrowRight
+                  <MdKeyboardArrowRight
                     size={30}
                     className="text-secondary"
                     style={{ cursor: "pointer" }}

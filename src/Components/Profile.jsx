@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 //https://res.cloudinary.com/dx5ilizca/image/upload/v1692800347/profile_epnaqt.png
 import { Col, Row } from "reactstrap";
 function Profile() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem("access_token")) {
+      navigate("/auth");
+    }
+  }, []);
   return (
     <div className="p-3 mt-5">
       <h4 className="text-center" style={{ fontWeight: 900, fontSize: 40 }}>

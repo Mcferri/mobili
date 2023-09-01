@@ -14,21 +14,22 @@ import BookRide from "../Components/BookRide";
 import WriteReport from "../Components/WriteReport";
 import PaymentMethod from "../Components/PaymentMethod";
 import YourRides from "../Components/YourRides";
+import SearchRide from "../Components/SearchRide";
 
 function AppNavigation() {
   let element = useRoutes([
     {
-      path: "/",
-      element: <SignUpp />,
-      children: [{ index: true }],
-    },
-    {
       element: <AppIndex />,
       children: [
-        { index: true, element: <AppIndex /> },
+        // { index: true, element: <AppIndex /> },
+        // {
+        //   path: "/home",
+        //   element: <Home />,
+        // },
         {
-          path: "/home",
-          element: <Home />,
+          path: "/",
+          element: <SearchRide />,
+          children: [{ index: true }],
         },
         {
           path: "/publish-ride",
@@ -76,10 +77,10 @@ function AppNavigation() {
         },
       ],
     },
-    // {
-    //   path: '/register',
-    //   element: <Register />,
-    // },
+    {
+      path: "/auth",
+      element: <SignUpp />,
+    },
   ]);
   return element;
 }

@@ -1,27 +1,49 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { loginSuccess, restoreUserFromLocalStorage } from "../redux/actions";
 
 export default function SearchRide() {
   const formData = {
-    from: '',
-    to: '',
-    date: '',
-    numberOfSeats: '',
-  }
-  const [searchData, setSearchData] = useState(formData)
+    from: "",
+    to: "",
+    date: "",
+    numberOfSeats: "",
+  };
+  const [searchData, setSearchData] = useState(formData);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setSearchData({ ...searchData, [e.target.name]: e.target.value })
-  }
+    setSearchData({ ...searchData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = () => {
-    console.log(searchData)
-    navigate('/search-results')
-  }
-  const navigate = useNavigate()
+    console.log(searchData);
+    navigate("/search-results");
+  };
+  useEffect(() => {
+    if (!localStorage.getItem("access_token")) {
+      navigate("/auth");
+    }
+  }, []);
+
+  const loggedInUser = useSelector((state) => state?.auth?.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Check localStorage for user data
+    const userData = JSON.parse(localStorage.getItem("access_token"));
+
+    if (userData) {
+      // Dispatch loginSuccess action to restore user data
+      const { email, access_token, token_type } = userData;
+      dispatch(loginSuccess(email, access_token, token_type));
+    }
+  }, [dispatch]);
 
   return (
     <div className="p-3 mt-5">
+      {JSON.stringify(loggedInUser)}
       <h4 className="text-center" style={{ fontWeight: 900, fontSize: 40 }}>
         Search for ride
       </h4>
@@ -74,11 +96,11 @@ export default function SearchRide() {
         <button
           className="app_button"
           onClick={handleSubmit}
-          style={{ padding: '20px 40px' }}
+          style={{ padding: "20px 40px" }}
         >
           GO
         </button>
       </div>
     </div>
-  )
+  );
 }

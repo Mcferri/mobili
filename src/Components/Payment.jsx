@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Payment() {
   const formData = {
@@ -15,6 +15,11 @@ export default function Payment() {
   const handleSubmit = () => {
     console.log(payment);
   };
+  useEffect(() => {
+    if (!localStorage.getItem("access_token")) {
+      navigate("/auth");
+    }
+  }, []);
   return (
     <div className="p-3">
       <h4>Payment</h4>

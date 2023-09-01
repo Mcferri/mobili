@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "../helpers/helpers";
 export default function WriteReport() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const query = useQuery();
 
   const type = query.get("report_type");
   const [reportData, setReportData] = useState("");
-
+  useEffect(() => {
+    if (!localStorage.getItem("access_token")) {
+      navigate("/auth");
+    }
+  }, []);
   return (
     <div className="p-3 mt-5">
       <h4 className="text-center" style={{ fontWeight: 900, fontSize: 40 }}>

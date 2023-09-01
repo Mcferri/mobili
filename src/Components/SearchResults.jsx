@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { Card, Col, Row } from "reactstrap";
 import profile from "../assets/images/profile.png";
@@ -7,6 +7,11 @@ import icon from "../assets/images/path.png";
 import { AiFillStar } from "react-icons/ai";
 export default function SearchResults() {
   const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem("access_token")) {
+      navigate("/auth");
+    }
+  }, []);
   return (
     <div className="p-3 mt-5">
       <h4 className="text-center" style={{ fontWeight: 900, fontSize: 40 }}>

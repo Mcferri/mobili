@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 //https://res.cloudinary.com/dx5ilizca/image/upload/v1692800347/profile_epnaqt.png
 import { Col, Row } from "reactstrap";
 import { MdArrowForwardIos } from "react-icons/md";
@@ -6,7 +6,11 @@ import { BsShieldFillCheck } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 function RiderProfile() {
   const navigate = useNavigate();
-
+  useEffect(() => {
+    if (!localStorage.getItem("access_token")) {
+      navigate("/auth");
+    }
+  }, []);
   return (
     <div className="p-3 mt-5">
       <Row className="mt-4">

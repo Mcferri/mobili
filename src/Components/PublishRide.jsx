@@ -73,14 +73,14 @@ export default function PublishRide() {
             </Col>
 
             <Col md={6} className="mt-3">
-              <label className="label">Gender</label>
+              <label className="label">Select your gender</label>
               <select
                 className="input_field"
                 name="gender"
                 value={publishRide.gender}
                 onChange={handleChange}
               >
-                <option>select gender</option>
+                <option>--gender--</option>
                 <option>Male</option>
                 <option>Female</option>
               </select>
@@ -104,6 +104,19 @@ export default function PublishRide() {
                 value={publishRide.seatsAvailable}
                 onChange={handleChange}
               />
+            </Col>
+            <Col md={6} className="mt-3">
+              <label className="label">Select a car</label>
+              <select
+                className="input_field"
+                name="gender"
+                value={publishRide.gender}
+                onChange={handleChange}
+              >
+                <option>--car--</option>
+                <option>Mercedes</option>
+                <option>Honda</option>
+              </select>
             </Col>
             <div className="mt-3">
               <button className="app_button auth" onClick={handleSubmit}>

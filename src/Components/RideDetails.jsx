@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BsShieldFillCheck } from "react-icons/bs";
 import { Col, Row } from "reactstrap";
 import icon from "../assets/images/path.png";
@@ -8,6 +8,11 @@ import { MdArrowForwardIos, MdAddCall } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 export default function RideDetails() {
   const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem("access_token")) {
+      navigate("/auth");
+    }
+  }, []);
   return (
     <div className="p-3 mt-5">
       <h4 className="text-center" style={{ fontWeight: 900, fontSize: 40 }}>
