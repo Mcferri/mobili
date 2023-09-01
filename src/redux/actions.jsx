@@ -24,7 +24,7 @@ export const loginSuccess = (email, access_token, token_type) => (dispatch) => {
 export const signup = (email, name, phone, password) => async (dispatch) => {
   try {
     const response = await axios.post(
-      "http://34.239.137.93/api/auth/users/create",
+      "https://34.239.137.93/api/auth/users/create",
       {
         email,
         name,
