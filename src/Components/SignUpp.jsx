@@ -21,40 +21,48 @@ export default function SignUpp() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  // const [errorMessage, setErrorMessage] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setErrorMessage("");
     setLoading(true);
     try {
       await dispatch(login(_email, _password));
       if (loggedInUser || localStorage.getItem("access_token")) {
         setLoading(false);
-        navigate("/"); // Navigate to home page on successful login
+        navigate("/");
       } else {
         setLoading(false);
-        setErrorMessage("Incorrect username or password"); // Set error message for incorrect login
+        // setErrorMessage("Incorrect username or password"); // Set error message for incorrect login
       }
     } catch (error) {
       setLoading(false);
-      if (error.response && error.response.data && error.response.data.detail) {
-        setErrorMessage(error.response.data.detail); // Set error message from API response
-      } else {
-        console.error("Login failed:", error);
-      }
+      console.error("Login failed:", error);
     }
   };
 
   const handleSignup = async (e) => {
     setLoading(true);
     e.preventDefault();
-    await dispatch(signup(email, name, phone, password));
-    if (loggedInUser || localStorage.getItem("access_token" && "user_data")) {
+    try {
+      await dispatch(signup(email, name, phone, password));
+      if (localStorage.getItem("access_token")) {
+        setLoading(false);
+        navigate("/");
+      } else {
+        setLoading(false);
+      }
+    } catch (error) {
       setLoading(false);
-      navigate("/");
+      if (error.response) {
+        console.log(error.response); // Set error message from API response
+      } else {
+        console.error("sign up failed:", error);
+      }
     }
   };
+
+  const errorMessage = useSelector((state) => state.auth.errorMessage);
 
   return (
     <div>
@@ -64,6 +72,7 @@ export default function SignUpp() {
           <h4 className="" style={{ fontWeight: 900, fontSize: 40 }}>
             Mobeelii
           </h4>
+
           <div className="d-flex justify-content-between" style={{ gap: 30 }}>
             <button
               className={tab ? "app_button" : "app_button_second"}

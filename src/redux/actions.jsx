@@ -21,6 +21,11 @@ export const loginSuccess = (email, access_token, token_type) => (dispatch) => {
   });
 };
 
+export const loginFailure = (errorMessage) => ({
+  type: 'LOGIN_FAILURE',
+  payload: errorMessage,
+});
+
 export const signup = (email, name, phone, password) => async (dispatch) => {
   try {
     const response = await axios.post(
@@ -35,9 +40,9 @@ export const signup = (email, name, phone, password) => async (dispatch) => {
     const { email: userEmail, access_token, token_type } = response.data;
     const user = { email: userEmail, access_token, token_type };
     const userData = JSON.stringify({ email, access_token, token_type });
-    console.log("zzzzzzzzzzzzz", response.data);
-    dispatch(signupSuccess(user));
+    console.log(response.data);
     localStorage.setItem("access_token", userData);
+    dispatch(signupSuccess(user));
     dispatch(login(email, password)); // Automatically log in after successful signup
   } catch (error) {
     console.error("Registration failed:", error);
@@ -63,7 +68,7 @@ export const login = (email, password) => async (dispatch) => {
   } catch (error) {
     if (error.response && error.response.data && error.response.data.detail) {
       const errorMessage = error.response.data.detail;
-      // alert(errorMessage); // Display error message as an alert
+      dispatch(loginFailure(errorMessage)); // Dispatch an action with the error message
       console.log(errorMessage);
     } else {
       console.error("Login failed:", error);
