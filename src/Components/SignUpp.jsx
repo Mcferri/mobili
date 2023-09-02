@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Col, Row } from "reactstrap";
-import { login, signup } from "../redux/actions";
+import { login, loginFailure, signup } from "../redux/actions";
 
 export default function SignUpp() {
   const loggedInUser = useSelector((state) => state?.auth?.user);
@@ -63,7 +63,11 @@ export default function SignUpp() {
   };
 
   const errorMessage = useSelector((state) => state.auth.errorMessage);
-
+  useEffect(() => {
+    return () => {
+      dispatch(loginFailure(null));
+    };
+  }, [dispatch]);
   return (
     <div>
       <Row className="m-0 mt-5">
