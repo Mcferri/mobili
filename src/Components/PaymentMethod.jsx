@@ -10,7 +10,7 @@ export default function RideDetails() {
   }, []);
   return (
     <div className="p-3 mt-5">
-      <h4 className="text-center" style={{ fontWeight: 900, fontSize: 40 }}>
+     <h4 className="text-center page_title" style={{ fontWeight: 900, fontSize: 40 }}>
         Enter your credit card details
       </h4>
       <Row className="mt-5">

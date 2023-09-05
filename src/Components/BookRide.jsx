@@ -11,7 +11,7 @@ export default function BookRide() {
   }, []);
   return (
     <div className="p-3 mt-5">
-      <h4 className="text-center" style={{ fontWeight: 900, fontSize: 40 }}>
+     <h4 className="text-center page_title" style={{ fontWeight: 900, fontSize: 40 }}>
         Review and book
       </h4>
       <Row>
@@ -35,7 +35,7 @@ export default function BookRide() {
             <p className="m-0 rides_avail">NGN 30,000</p>
           </div>
 
-          <div className="mt-5 text-center">
+          <div className="mt-3 text-center">
             <button
               className="app_button"
               onClick={() => navigate("/payment-method")}

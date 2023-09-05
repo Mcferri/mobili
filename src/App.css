@@ -42,6 +42,12 @@ body {
   border: 1px solid red;
 } */
 
+.edit_icon {
+  background-color: rgb(225, 225, 225);
+  padding: 9px;
+  border-radius: 50%;
+}
+
 .auth {
   width: 100% !important;
 }
@@ -164,20 +170,35 @@ body {
     display: none;
   }
 }
+.profile_div_button {
+  display: flex;
+}
 @media (max-width: 575.98px) {
+  .page_title{
+    font-size: 30px !important;
+  }
   .web_rep {
     display: none;
   }
   .profile_div {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
-    text-align: center;
+    /* text-align: center; */
   }
   .about {
     font-size: 14px;
   }
+  .profile_pic {
+    border-radius: 50%;
+    width: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -10px;
+  }
   .profile_div_button {
     font-size: 14px;
+    display: inline-block !important;
   }
   .search_ride_inputs_div {
     display: flex;

@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginSuccess, restoreUserFromLocalStorage } from "../redux/actions";
-
+import moment from "moment";
 export default function SearchRide() {
   const formData = {
     from: "",
     to: "",
-    date: "",
-    numberOfSeats: "",
+    date: moment().format("YYYY-MM-DD"),
+    numberOfSeats: 1,
   };
   const [searchData, setSearchData] = useState(formData);
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -36,49 +37,54 @@ export default function SearchRide() {
 
     if (userData) {
       // Dispatch loginSuccess action to restore user data
-      const { email, access_token, token_type } = userData;
-      dispatch(loginSuccess(email, access_token, token_type));
+      const { email, access_token, token_type, name, user_id } = userData;
+      dispatch(loginSuccess(email, access_token, token_type, name, user_id));
     }
   }, [dispatch]);
 
   return (
     <div className="p-3 mt-5">
-      {JSON.stringify(loggedInUser)}
-      <h4 className="text-center" style={{ fontWeight: 900, fontSize: 40 }}>
+      {/* {JSON.stringify(loggedInUser)} */}
+     <h4 className="text-center page_title" style={{ fontWeight: 900, fontSize: 40 }}>
         Search for ride
       </h4>
       <div
-        className="mt-5 d-flex justify-content-center search_ride_inputs_div"
+        className="mt-3 d-flex justify-content-center search_ride_inputs_div"
         style={{ gap: 10 }}
       >
         <div>
-          <label className="label">From</label>
-          <input
+          <label className="label">Leaving from</label>
+          <select
             className="input_field"
-            type="text"
-            name="from"
+            name="gender"
             value={searchData.from}
             onChange={handleChange}
-          />
+          >
+            <option style={{ color: "grey" }}>--select state--</option>
+            <option>Kano</option>
+            <option>Jigawa</option>
+          </select>
         </div>
         <div>
-          <label className="label">To</label>
+          <label className="label">Going to</label>
           <input
             className="input_field"
             type="text"
             name="to"
             value={searchData.to}
             onChange={handleChange}
+            required
           />
         </div>
         <div>
-          <label className="label">Date</label>
+          <label className="label">Today</label>
           <input
             className="input_field"
             type="date"
             name="date"
             value={searchData.date}
             onChange={handleChange}
+            required
           />
         </div>
         <div>
@@ -89,6 +95,9 @@ export default function SearchRide() {
             name="numberOfSeats"
             value={searchData.numberOfSeats}
             onChange={handleChange}
+            min={1}
+            max={8}
+            required
           />
         </div>
       </div>

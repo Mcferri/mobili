@@ -15,7 +15,7 @@ export default function RideDetails() {
   }, []);
   return (
     <div className="p-3 mt-5">
-      <h4 className="text-center" style={{ fontWeight: 900, fontSize: 40 }}>
+     <h4 className="text-center page_title" style={{ fontWeight: 900, fontSize: 40 }}>
         Sun, 9 July
       </h4>
       <Row className="mt-5">
@@ -107,7 +107,7 @@ export default function RideDetails() {
                 >
                   Report Ride
                 </p>
-                <div className="mt-5 text-center">
+                <div className="mt-3 text-center">
                   <button
                     className="app_button"
                     onClick={() => navigate("/book-ride")}

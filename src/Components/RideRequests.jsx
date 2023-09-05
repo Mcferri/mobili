@@ -13,13 +13,13 @@ export default function RideRequests() {
   }, []);
   return (
     <div className="p-3 mt-5">
-      <h4 className="text-center" style={{ fontWeight: 900, fontSize: 40 }}>
+     <h4 className="text-center page_title" style={{ fontWeight: 900, fontSize: 40 }}>
         Ride requests
       </h4>
       <Row>
         <Col xl={4} lg={4} md={4} sm={12} xs={12}></Col>
         <Col xl={4} lg={4} md={4} sm={12} xs={12}>
-          <div className="mt-5">
+          <div className="mt-3">
             <div
               className="mt-3 d-flex align-items-center justify-content-between ride_details_user"
               onClick={() => navigate("/profile")}

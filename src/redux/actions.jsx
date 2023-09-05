@@ -1,6 +1,5 @@
 // src/actions.js
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 export const signupSuccess = (user) => ({
   type: "SIGNUP_SUCCESS",
@@ -9,20 +8,27 @@ export const signupSuccess = (user) => ({
 
 // actions.js
 // actions.js
-export const loginSuccess = (email, access_token, token_type) => (dispatch) => {
-  // Store user data in localStorage
-  const userData = JSON.stringify({ email, access_token, token_type });
-  localStorage.setItem("user_data", userData);
+export const loginSuccess =
+  (email, access_token, token_type, name, user_id) => (dispatch) => {
+    // Store user data in localStorage
+    const userData = JSON.stringify({
+      email,
+      access_token,
+      token_type,
+      name,
+      user_id,
+    });
+    localStorage.setItem("user_data", userData);
 
-  // Dispatch the action to update Redux state
-  dispatch({
-    type: "LOGIN_SUCCESS",
-    payload: { email, access_token, token_type },
-  });
-};
+    // Dispatch the action to update Redux state
+    dispatch({
+      type: "LOGIN_SUCCESS",
+      payload: { email, access_token, token_type, name, user_id },
+    });
+  };
 
 export const loginFailure = (errorMessage) => ({
-  type: 'LOGIN_FAILURE',
+  type: "LOGIN_FAILURE",
   payload: errorMessage,
 });
 
@@ -37,9 +43,27 @@ export const signup = (email, name, phone, password) => async (dispatch) => {
         password,
       }
     );
-    const { email: userEmail, access_token, token_type } = response.data;
-    const user = { email: userEmail, access_token, token_type };
-    const userData = JSON.stringify({ email, access_token, token_type });
+    const {
+      email: userEmail,
+      access_token,
+      token_type,
+      name: userName,
+      user_id,
+    } = response.data;
+    const user = {
+      email: userEmail,
+      access_token,
+      token_type,
+      name: userName,
+      user_id,
+    };
+    const userData = JSON.stringify({
+      email,
+      access_token,
+      token_type,
+      name,
+      user_id,
+    });
     console.log(response.data);
     localStorage.setItem("access_token", userData);
     dispatch(signupSuccess(user));
@@ -59,9 +83,21 @@ export const login = (email, password) => async (dispatch) => {
       }
     );
 
-    const { email: userEmail, access_token, token_type } = response.data;
-    const user = { email: userEmail, access_token, token_type };
-    const userData = JSON.stringify({ email, access_token, token_type });
+    const {
+      email: userEmail,
+      access_token,
+      token_type,
+      name,
+      user_id,
+    } = response.data;
+    const user = { email: userEmail, access_token, token_type, name, user_id };
+    const userData = JSON.stringify({
+      email,
+      access_token,
+      token_type,
+      name,
+      user_id,
+    });
     dispatch(loginSuccess(user));
     localStorage.setItem("access_token", userData);
     console.log(user);

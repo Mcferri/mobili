@@ -14,13 +14,13 @@ export default function SearchResults() {
   }, []);
   return (
     <div className="p-3 mt-5">
-      <h4 className="text-center" style={{ fontWeight: 900, fontSize: 40 }}>
+     <h4 className="text-center page_title" style={{ fontWeight: 900, fontSize: 40 }}>
         Available rides
       </h4>
       <Row>
         <Col md={3}></Col>
         <Col md={6}>
-          <div className="mt-5">
+          <div className="mt-3">
             <p className="results_date">Fri, 21 Jul</p>
             <p className="from_to">
               Kano, Nigeria <BsArrowRight size="1.5rem" /> Jigawa, Nigeria

@@ -20,13 +20,13 @@ export default function ReportRide() {
   return (
     <div className="p-3 mt-5">
       <h4
-        className="text-center web_rep"
+        className="text-center web_rep page_title"
         style={{ fontWeight: 900, fontSize: 40 }}
       >
         What would you like to report?
       </h4>
       <h4
-        className="text-center mob_rep"
+        className="text-center mob_rep page_title"
         style={{ fontWeight: 900, fontSize: 40 }}
       >
         Report
@@ -34,7 +34,7 @@ export default function ReportRide() {
       <Row>
         <Col md={4}></Col>
         <Col md={4}>
-          <div className="mt-5">
+          <div className="mt-3">
             {reportTypes.map((item, index) => (
               <div
                 key={index}

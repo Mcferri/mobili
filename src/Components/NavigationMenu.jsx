@@ -38,7 +38,7 @@ export default function NavigationMenu() {
       <Row className="m-0 navbar_ shadow-sm">
         <Col lg={3} md={3} sm={3} xs={3} className="d-flex align-items-center">
           <p className="logo m-0" onClick={() => navigate("/")}>
-            Mobeelii
+            wenyfour
           </p>
         </Col>
         <Col
@@ -61,12 +61,12 @@ export default function NavigationMenu() {
           >
             <BsPlus />
           </button>
-          <button
+          {/* <button
             className="app_button second_app_button"
             onClick={() => navigate(`/ride-requests`)}
           >
             Ride requests
-          </button>
+          </button> */}
           <AiOutlineBell
             style={{ margin: 0, cursor: "pointer" }}
             size="1.6rem"
