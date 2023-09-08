@@ -4,6 +4,7 @@ const initialState = {
   errorMessage: null,
 };
 
+//reducer function
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SIGNUP_SUCCESS":

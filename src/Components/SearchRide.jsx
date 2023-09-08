@@ -44,7 +44,7 @@ export default function SearchRide() {
 
   return (
     <div className="p-3 mt-5">
-      {/* {JSON.stringify(loggedInUser)} */}
+      {JSON.stringify(loggedInUser)}
      <h4 className="text-center page_title" style={{ fontWeight: 900, fontSize: 40 }}>
         Search for ride
       </h4>

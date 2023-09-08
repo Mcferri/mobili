@@ -16,6 +16,8 @@ import PaymentMethod from "../Components/PaymentMethod";
 import YourRides from "../Components/YourRides";
 import SearchRide from "../Components/SearchRide";
 import EditProfile from "../Components/EditProfile";
+import Settings from "../Components/Settings";
+import DeleteAccount from "../Components/DeleteAccount";
 
 function AppNavigation() {
   let element = useRoutes([
@@ -79,6 +81,14 @@ function AppNavigation() {
         {
           path: "/edit-profile",
           element: <EditProfile />,
+        },
+        {
+          path: "/settings",
+          element: <Settings />,
+        },
+        {
+          path: "/delete-account",
+          element: <DeleteAccount />,
         },
       ],
     },

@@ -12,13 +12,12 @@ export default function EditProfile() {
   const name = query.get(`name`);
   const email = query.get(`email`);
   const phone = query.get(`phone`);
-  const formData = {
+  const initialFormData = {
     name: name,
     email: email,
-    // about: "",
     phone: phone,
   };
-  const [userData, setUserData] = useState(formData);
+  const [formData, setFormData] = useState(initialFormData);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const loggedInUser = useSelector((state) => state?.auth?.user);
@@ -35,15 +34,15 @@ export default function EditProfile() {
   }, [dispatch]);
 
   const handleChange = (e) => {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = () => {
-    console.log(userData);
+    // console.log(userData);
     setLoading(true);
     try {
       axios
-        .put(`${api}/auth/users/${loggedInUser?.user_id}/update`, userData)
+        .put(`${api}/auth/users/${loggedInUser?.user_id}/update`, formData)
         .then((response) => {
           setLoading(false);
           if (response.error) {
@@ -60,7 +59,6 @@ export default function EditProfile() {
 
   return (
     <div className="p-3 mt-5">
-      {/* {JSON.stringify(loggedInUser)} */}
       <h4
         className="text-center page_title"
         style={{ fontWeight: 900, fontSize: 40 }}
@@ -68,7 +66,6 @@ export default function EditProfile() {
         Edit profile
       </h4>
       <Row>
-        {/* {JSON.stringify(userData)} */}
         <Col xl={4} lg={4} md={4} sm={12} xs={12}></Col>
         <Col xl={4} lg={4} md={4} sm={12} xs={12}>
           <Row>
@@ -78,7 +75,7 @@ export default function EditProfile() {
                 className="input_field"
                 type="text"
                 name="name"
-                value={userData.name}
+                value={formData.name}
                 onChange={handleChange}
                 required
               />
@@ -89,7 +86,7 @@ export default function EditProfile() {
                 className="input_field"
                 type="email"
                 name="email"
-                value={userData.email}
+                value={formData.email}
                 onChange={handleChange}
                 required
               />
@@ -100,7 +97,7 @@ export default function EditProfile() {
                 className="input_field"
                 type="tel"
                 name="phone"
-                value={userData.phone}
+                value={formData.phone}
                 onChange={handleChange}
                 required
               />
@@ -111,7 +108,7 @@ export default function EditProfile() {
                 name="about"
                 className="input_field"
                 id=""
-                // value={userData.about}
+                // value={formData.about}
                 // onChange={handleChange}
                 cols="20"
                 rows="5"
@@ -126,11 +123,7 @@ export default function EditProfile() {
             Saving...
           </button>
         ) : (
-          <button
-            className="app_button"
-            onClick={handleSubmit}
-            //   style={{ padding: "20px 40px" }}
-          >
+          <button className="app_button" onClick={handleSubmit}>
             Save
           </button>
         )}

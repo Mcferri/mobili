@@ -17,7 +17,7 @@ export default function YourRides() {
       >
         Your rides
       </h4>
-      <Row className="mt-4">
+      <Row className="">
         <Col md={3}></Col>
         <Col md={6}>
           <Card

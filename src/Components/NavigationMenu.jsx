@@ -201,6 +201,24 @@ export default function NavigationMenu() {
               <div
                 style={{ gap: 10 }}
                 className="profile_drop_item d-flex justify-content-between align-items-center"
+                onClick={() => navigate("/settings")}
+              >
+                <div>
+                  {/* <TbLogout className="text-secondary" /> */}
+                  Settings{" "}
+                </div>
+                <div>
+                  <MdKeyboardArrowRight
+                    size={30}
+                    className="text-secondary"
+                    style={{ cursor: "pointer" }}
+                  />
+                </div>
+              </div>
+              <hr />
+              <div
+                style={{ gap: 10 }}
+                className="profile_drop_item d-flex justify-content-between align-items-center"
                 onClick={logout}
               >
                 <div>

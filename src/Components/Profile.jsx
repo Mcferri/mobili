@@ -8,7 +8,7 @@ import axios from "axios";
 import { api } from "../helper/apis";
 import moment from "moment/moment";
 function Profile() {
-  const [profileData, setProfileData] = useState({});
+  // const [profileData, setProfileData] = useState({});
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const loggedInUser = useSelector((state) => state?.auth?.user);
@@ -23,31 +23,37 @@ function Profile() {
     const userData = JSON.parse(localStorage.getItem("access_token"));
     if (userData) {
       // Dispatch loginSuccess action to restore user data
-      const { email, access_token, token_type, name, user_id } = userData;
-      dispatch(loginSuccess(email, access_token, token_type, name, user_id));
+      const { email, access_token, token_type, name, user_id, phone } =
+        userData;
+      dispatch(
+        loginSuccess(email, access_token, token_type, name, user_id, phone)
+      );
     }
   }, [dispatch]);
 
   const userData = JSON.parse(localStorage.getItem("access_token"));
   const xtoken = userData?.access_token;
+
   useEffect(() => {
-    setLoading(true);
-    axios
-      .get(`${api}/auth/users/me`, {
-        headers: {
-          "x-token": xtoken,
-        },
-      })
-      .then((response) => {
-        setLoading(false);
-        setProfileData(response.data);
-        console.log(response.data);
-      })
-      .catch((err) => {
-        setLoading(false);
-        console.log("error fetching data", err);
-      });
-  }, []);
+    if (loggedInUser) {
+      setLoading(true);
+      axios
+        .get(`${api}/auth/users/me`, {
+          headers: {
+            "x-token": xtoken,
+          },
+        })
+        .then((response) => {
+          setLoading(false);
+          // setProfileData(response.data);
+          console.log(response.data);
+        })
+        .catch((err) => {
+          setLoading(false);
+          console.log("error fetching data", err);
+        });
+    }
+  }, [loggedInUser]);
   return (
     <div className="p-3 mt-5">
       <h4
@@ -64,6 +70,7 @@ function Profile() {
         <Row className="mt-5">
           <Col xl={3} lg={3} md={3} sm={12} xs={12}></Col>
           <Col xl={6} lg={6} md={6} sm={12} xs={12}>
+            {JSON.stringify(loggedInUser)}
             <div
               className="d-flex justify-content-center profile_div"
               style={{ gap: 30 }}
@@ -77,7 +84,7 @@ function Profile() {
                 />
               </div>
               <div>
-                <h3 className="m-0 fullname">{profileData?.name}</h3>
+                {/* <h3 className="m-0 fullname">{profileData?.name}</h3>
                 <p className="email">{profileData?.email}</p>
                 <p className="about">
                   My name is Yasir, I am a Software Engineer with years of
@@ -90,13 +97,13 @@ function Profile() {
                     Joined{" "}
                     {moment(profileData?.created_at).format("MMMM, YYYY")}
                   </p>
-                </div>
+                </div> */}
                 <div>
                   <button
                     className="app_button second_app_button mt-2"
                     onClick={() =>
                       navigate(
-                        `/edit-profile?name=${profileData?.name}&phone=${profileData?.phone}&email=${profileData.email}`
+                        `/edit-profile?name=${loggedInUser?.name}&phone=${loggedInUser?.phone}&email=${loggedInUser.email}`
                       )
                     }
                   >

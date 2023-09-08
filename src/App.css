@@ -33,6 +33,20 @@ body {
   font-size: 13px;
   padding: 5px 20px;
 }
+.danger_button {
+  background-color: #ff4747;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 13px;
+  padding: 5px 20px;
+}
+.inactive_danger_button{
+  border: 1px solid #ff4747;
+  border-radius: 5px;
+  font-size: 13px;
+  padding: 5px 20px;
+}
 .report_text {
   color: #0d6efd;
   font-weight: bold;
@@ -154,7 +168,7 @@ body {
   width: 250px;
 }
 .profile_drop_item {
-  padding: 3px;
+  /* padding: 3px; */
   /* width: fit-content; */
 }
 .profile_drop_item:hover {
@@ -174,7 +188,7 @@ body {
   display: flex;
 }
 @media (max-width: 575.98px) {
-  .page_title{
+  .page_title {
     font-size: 30px !important;
   }
   .web_rep {
