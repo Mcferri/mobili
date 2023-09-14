@@ -35,7 +35,7 @@ export const loginFailure = (errorMessage) => ({
 export const signup = (email, name, phone, password) => async (dispatch) => {
   try {
     const response = await axios.post(
-      "https://34.239.137.93/api/auth/users/create",
+      "http://34.239.137.93/api/auth/users/create",
       {
         email,
         name,
