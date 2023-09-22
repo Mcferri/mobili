@@ -6,6 +6,8 @@ import { TbLogout } from "react-icons/tb";
 import { PiCarSimpleLight } from "react-icons/pi";
 import { AiOutlineBell, AiOutlineUser } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/images/wenyfour-black.PNG";
+
 import {
   MdOutlineKeyboardArrowDown,
   MdKeyboardArrowRight,
@@ -37,9 +39,11 @@ export default function NavigationMenu() {
     <div>
       <Row className="m-0 navbar_ shadow-sm">
         <Col lg={3} md={3} sm={3} xs={3} className="d-flex align-items-center">
-          <p className="logo m-0" onClick={() => navigate("/")}>
-            wenyfour
-          </p>
+          <img
+            src={logo}
+            onClick={() => navigate("/")}
+            style={{ width: "11rem" }}
+          />
         </Col>
         <Col
           lg={9}
@@ -127,7 +131,7 @@ export default function NavigationMenu() {
               </div>
               <hr />
               <div
-                onClick={() => navigate("/your-rides")}
+                onClick={() => navigate("/my-cars")}
                 style={{ gap: 10 }}
                 className="profile_drop_item d-flex justify-content-between align-items-center"
               >

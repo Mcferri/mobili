@@ -37,7 +37,7 @@ export default function BookRide() {
 
           <div className="mt-3 text-center">
             <button
-              className="app_button"
+              className="app_button p-3"
               onClick={() => navigate("/payment-method")}
             >
               Pay NGN30,000

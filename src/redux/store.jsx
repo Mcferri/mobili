@@ -1,4 +1,3 @@
-// src/store.js
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./reducers/authReducer";
 

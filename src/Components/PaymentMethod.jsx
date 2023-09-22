@@ -10,7 +10,10 @@ export default function RideDetails() {
   }, []);
   return (
     <div className="p-3 mt-5">
-     <h4 className="text-center page_title" style={{ fontWeight: 900, fontSize: 40 }}>
+      <h4
+        className="text-center page_title"
+        style={{ fontWeight: 900, fontSize: 40 }}
+      >
         Enter your credit card details
       </h4>
       <Row className="mt-5">
@@ -40,14 +43,14 @@ export default function RideDetails() {
               Information collected by Mobili to book carpooling ride. Learn
               more about your rights and how we handle your personal data in our
               private{" "}
-              <span style={{ color: "#0d6efd", fontWeight: "bold" }}>
+              <span style={{ color: "#000000", fontWeight: "bold" }}>
                 policy
               </span>
               .
             </p>
           </div>
           <div className="mt-3 text-center">
-            <button className="app_button">Pay NGN30,000</button>
+            <button className="app_button p-3">Pay NGN30,000</button>
           </div>
         </Col>
         <Col md={3}></Col>

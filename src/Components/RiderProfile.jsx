@@ -45,7 +45,7 @@ function RiderProfile() {
           <div className="mt-3">
             <span className="text-secondary">
               <BsShieldFillCheck
-                color="#0d6efd"
+                color="#949494"
                 size="1.3rem"
                 className="m-0"
               />{" "}
@@ -55,7 +55,7 @@ function RiderProfile() {
           <div className="mt-3">
             <span className="text-secondary">
               <BsShieldFillCheck
-                color="#0d6efd"
+                color="#949494"
                 size="1.3rem"
                 className="m-0"
               />{" "}

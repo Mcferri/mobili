@@ -119,11 +119,11 @@ export default function EditProfile() {
       </Row>
       <div className="m-0 text-center mt-3">
         {loading ? (
-          <button className="app_button" disabled>
+          <button className="app_button p-3" disabled>
             Saving...
           </button>
         ) : (
-          <button className="app_button" onClick={handleSubmit}>
+          <button className="app_button p-3" onClick={handleSubmit}>
             Save
           </button>
         )}

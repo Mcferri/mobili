@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Col, Row } from "reactstrap";
 import { login, loginFailure, signup } from "../redux/actions";
+import logo from "../assets/images/wenyfour-black.PNG";
+import { api } from "../helper/apis";
+import axios from "axios";
 
 export default function SignUpp() {
   const loggedInUser = useSelector((state) => state?.auth?.user);
@@ -21,7 +24,9 @@ export default function SignUpp() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  // const [errorMessage, setErrorMessage] = useState("");
+  const [nin, setNin] = useState("");
+  const [errorMessage_, setErrorMessage_] = useState("");
+  const errorMessage = useSelector((state) => state.auth.errorMessage);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -41,59 +46,67 @@ export default function SignUpp() {
     }
   };
 
-  const handleSignup = async (e) => {
-    setLoading(true);
+  const handleSignup = (e) => {
     e.preventDefault();
-    try {
-      await dispatch(signup(email, name, phone, password));
-      if (localStorage.getItem("access_token")) {
+    setLoading(true);
+    fetch(`${api}/auth/users/create`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        name: name,
+        phone: phone,
+        password: password,
+        nin: nin,
+      }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
         setLoading(false);
-        navigate("/");
-      } else {
-        setLoading(false);
-      }
-    } catch (error) {
-      setLoading(false);
-      if (error.response) {
-        console.log(error.response); // Set error message from API response
-      } else {
-        console.error("sign up failed:", error);
-      }
-    }
+        if (data?.detail) {
+          setErrorMessage_(data?.detail);
+          console.log("Sent", data);
+        } else {
+          navigate("/signup-message");
+          console.log(data);
+        }
+        setErrorMessage_("");
+      })
+      .catch((error) => {
+        console.error("Error...:", error);
+      });
   };
-
-  const errorMessage = useSelector((state) => state.auth.errorMessage);
   useEffect(() => {
     return () => {
       dispatch(loginFailure(null));
     };
   }, [dispatch]);
   return (
-    <div>
+    <div className="mb-3">
       <Row className="m-0 mt-5">
         <Col xl={4} lg={4} md={4} sm={12} xs={12}></Col>
         <Col xl={4} lg={4} md={4} sm={12} xs={12}>
-          <h4 className="" style={{ fontWeight: 900, fontSize: 40 }}>
-          wenyfour
-          </h4>
-
+          {/* <h4 className="" style={{ fontWeight: 900, fontSize: 40 }}>
+            wenyfour
+          </h4> */}
+          <div className="text-center mb-3">
+            <img src={logo} alt="" style={{ width: 200 }} />
+          </div>
           <div className="d-flex justify-content-between" style={{ gap: 30 }}>
-            <button
-              className={tab ? "app_button" : "app_button_second"}
-              onClick={switchTab}
-            >
+            <p className={tab ? "bold" : "not_bold"} onClick={switchTab}>
               Login
-            </button>
-            <button
-              className={!tab ? "app_button" : "app_button_second"}
-              onClick={switchTab}
-            >
+            </p>
+            <p className={!tab ? "bold" : "not_bold"} onClick={switchTab}>
               Register
-            </button>
+            </p>
+            {/* {JSON.stringify(errorMessage_)} */}
           </div>
           {tab ? (
             <form onSubmit={handleLogin}>
-              {/* {JSON.stringify(email + password)} */}
               <div className="mt-3">
                 <label className="label" htmlFor="email">
                   Email
@@ -134,14 +147,24 @@ export default function SignUpp() {
                 <p className="forgot_p m-0">Forgot Password</p>
               </div>
               {!loading ? (
-                <button className="app_button auth mt-3">Sign In</button>
+                <button
+                  className="app_button auth mt-3 p-3"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Sign In
+                </button>
               ) : (
-                <button className="app_button auth mt-3">Loading...</button>
+                <button
+                  className="app_button auth mt-3 p-3"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Loading...
+                </button>
               )}
             </form>
           ) : (
             <form onSubmit={handleSignup}>
-              {/* {JSON.stringify(email + name + phone + password)} */}
+              {/* {JSON.stringify(email + name + phone + password+ nin)} */}
               <div className="mt-3">
                 <label className="label" htmlFor="fullName">
                   Full Name
@@ -185,6 +208,19 @@ export default function SignUpp() {
                 />
               </div>{" "}
               <div className="mt-3">
+                <label className="label" htmlFor="nin">
+                  NIN
+                </label>
+                <input
+                  className="input_field"
+                  id="nin"
+                  required
+                  type="number"
+                  value={nin}
+                  onChange={(e) => setNin(e.target.value)}
+                />
+              </div>{" "}
+              <div className="mt-3">
                 <label className="label" htmlFor="password">
                   Password
                 </label>
@@ -198,20 +234,35 @@ export default function SignUpp() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
+              {errorMessage_ && (
+                <p style={{ color: "red", fontSize: 13 }}>
+                  {"Registration failed: " + errorMessage_ + "!"}
+                </p>
+              )}
               <div className="mt-3">
                 <p className="forgot_p m-0">
                   <input type="checkbox" /> I have read and agree to the terms
                 </p>
               </div>
               {!loading ? (
-                <button className="app_button auth mt-3">Sign Up</button>
+                <button
+                  className="app_button auth mt-3 p-3"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Sign Up
+                </button>
               ) : (
-                <button className="app_button auth mt-3">Loading...</button>
+                <button
+                  className="app_button auth mt-3 p-3"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Loading...
+                </button>
               )}
             </form>
           )}
         </Col>
-        <Col xl={3} lg={3} md={3} sm={12} xs={12}></Col>
+        <Col xl={4} lg={4} md={4} sm={12} xs={12}></Col>
       </Row>
     </div>
   );

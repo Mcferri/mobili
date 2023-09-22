@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginSuccess, restoreUserFromLocalStorage } from "../redux/actions";
 import moment from "moment";
+import LivingFrom from "./States/LivingFrom";
 export default function SearchRide() {
   const formData = {
     from: "",
@@ -44,8 +45,11 @@ export default function SearchRide() {
 
   return (
     <div className="p-3 mt-5">
-      {JSON.stringify(loggedInUser)}
-     <h4 className="text-center page_title" style={{ fontWeight: 900, fontSize: 40 }}>
+      {/* {JSON.stringify(searchData)} */}
+      <h4
+        className="text-center page_title"
+        style={{ fontWeight: 900, fontSize: 40 }}
+      >
         Search for ride
       </h4>
       <div
@@ -53,33 +57,36 @@ export default function SearchRide() {
         style={{ gap: 10 }}
       >
         <div>
+          {/* <LivingFrom/> */}
           <label className="label">Leaving from</label>
           <select
-            className="input_field"
-            name="gender"
+            className="input_field search_ride_input"
+            name="from"
             value={searchData.from}
             onChange={handleChange}
           >
-            <option style={{ color: "grey" }}>--select state--</option>
-            <option>Kano</option>
-            <option>Jigawa</option>
+            <option style={{ color: "grey" }}></option>
+            <option>Kano, Nigeria</option>
+            <option>Jigawa, Nigeria</option>
           </select>
         </div>
         <div>
           <label className="label">Going to</label>
-          <input
-            className="input_field"
-            type="text"
+          <select
+            className="input_field search_ride_input"
             name="to"
             value={searchData.to}
             onChange={handleChange}
-            required
-          />
+          >
+            <option style={{ color: "grey" }}></option>
+            <option>Kano, Nigeria</option>
+            <option>Jigawa, Nigeria</option>
+          </select>
         </div>
         <div>
           <label className="label">Today</label>
           <input
-            className="input_field"
+            className="input_field search_ride_input"
             type="date"
             name="date"
             value={searchData.date}
@@ -90,7 +97,7 @@ export default function SearchRide() {
         <div>
           <label className="label">Seats</label>
           <input
-            className="input_field"
+            className="input_field search_ride_input"
             type="number"
             name="numberOfSeats"
             value={searchData.numberOfSeats}

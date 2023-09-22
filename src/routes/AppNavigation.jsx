@@ -18,6 +18,9 @@ import SearchRide from "../Components/SearchRide";
 import EditProfile from "../Components/EditProfile";
 import Settings from "../Components/Settings";
 import DeleteAccount from "../Components/DeleteAccount";
+import MyCars from "../Components/MyCars";
+import CreateCar from "../Components/CreateCar";
+import SignupMessage from "../Components/SignupMessage";
 
 function AppNavigation() {
   let element = useRoutes([
@@ -90,7 +93,16 @@ function AppNavigation() {
           path: "/delete-account",
           element: <DeleteAccount />,
         },
+        {
+          path: "/my-cars",
+          element: <MyCars />,
+        },
+        { path: "/create-new-car", element: <CreateCar /> },
       ],
+    },
+    {
+      path: "/signup-message",
+      element: <SignupMessage />,
     },
     {
       path: "/auth",

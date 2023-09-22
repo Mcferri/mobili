@@ -32,46 +32,54 @@ export const loginFailure = (errorMessage) => ({
   payload: errorMessage,
 });
 
-export const signup = (email, name, phone, password) => async (dispatch) => {
-  try {
-    const response = await axios.post(
-      "http://34.239.137.93/api/auth/users/create",
-      {
-        email,
-        name,
-        phone,
-        password,
+export const signup =
+  (email, name, phone, password, nin) => async (dispatch) => {
+    try {
+      const response = await axios.post(
+        "http://34.239.137.93/api/auth/users/create",
+        {
+          email,
+          name,
+          phone,
+          nin,
+          password,
+        }
+      );
+      // const {
+      //   email: userEmail,
+      //   access_token,
+      //   token_type,
+      //   name: userName,
+      //   user_id,
+      // } = response.data;
+      const user = {
+        email: userEmail,
+        access_token,
+        token_type,
+        name: userName,
+        user_id,
+      };
+      // const userData = JSON.stringify({
+      //   email,
+      //   access_token,
+      //   token_type,
+      //   name,
+      //   user_id,
+      // });
+      // console.log(response.data);
+      // localStorage.setItem("access_token", userData);
+      dispatch(signupSuccess(user));
+      // dispatch(login(email, password)); // Automatically log in after successful signup
+    } catch (error) {
+      if (error.response && error.response.data && error.response.data.detail) {
+        const errorMessage = error.response.data.detail;
+        dispatch(loginFailure(errorMessage)); // Dispatch an action with the error message
+        console.log("Registration failed: " + errorMessage + "!");
+      } else {
+        console.error("Login failed:", error);
       }
-    );
-    const {
-      email: userEmail,
-      access_token,
-      token_type,
-      name: userName,
-      user_id,
-    } = response.data;
-    const user = {
-      email: userEmail,
-      access_token,
-      token_type,
-      name: userName,
-      user_id,
-    };
-    const userData = JSON.stringify({
-      email,
-      access_token,
-      token_type,
-      name,
-      user_id,
-    });
-    console.log(response.data);
-    localStorage.setItem("access_token", userData);
-    dispatch(signupSuccess(user));
-    dispatch(login(email, password)); // Automatically log in after successful signup
-  } catch (error) {
-    console.error("Registration failed:", error);
-  }
-};
+    }
+  };
 
 export const login = (email, password) => async (dispatch) => {
   try {

@@ -83,7 +83,9 @@ export default function DeleteAccount() {
                   />
                 </div>
                 <div className="d-flex justify-content-between">
-                  <button className="app_button">Cancel</button>
+                  <button className="app_button" onClick={() => navigate(-1)}>
+                    Cancel
+                  </button>
                   {loading ? (
                     <button disabled={loading} className={"danger_button"}>
                       Deleting...

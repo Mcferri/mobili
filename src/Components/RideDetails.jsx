@@ -15,7 +15,10 @@ export default function RideDetails() {
   }, []);
   return (
     <div className="p-3 mt-5">
-     <h4 className="text-center page_title" style={{ fontWeight: 900, fontSize: 40 }}>
+      <h4
+        className="text-center page_title"
+        style={{ fontWeight: 900, fontSize: 40 }}
+      >
         Sun, 9 July
       </h4>
       <Row className="mt-5">
@@ -58,7 +61,7 @@ export default function RideDetails() {
                       style={{ color: "", fontWeight: "normal" }}
                     >
                       <AiFillStar
-                        color="#0d6efd"
+                        color="#949494"
                         size="1.3rem"
                         className="m-0"
                       />{" "}
@@ -78,7 +81,7 @@ export default function RideDetails() {
                 <div className="mt-3">
                   <span className="text-secondary">
                     <BsShieldFillCheck
-                      color="#0d6efd"
+                      color="#949494"
                       size="1.3rem"
                       className="m-0"
                     />{" "}
@@ -88,28 +91,28 @@ export default function RideDetails() {
                 <hr className="hr" />
                 <div className="mt-3">
                   <span className="text-secondary">
-                    <MdAddCall color="#0d6efd" size="1.3rem" className="m-0" />{" "}
+                    <MdAddCall color="#949494" size="1.3rem" className="m-0" />{" "}
                     Contact Mike John
                   </span>
                 </div>
                 <hr className="hr" />
                 <div className="mt-3">
                   <span className="">
-                    <AiFillCar color="#0d6efd" size="1.3rem" className="m-0" />{" "}
+                    <AiFillCar color="#949494" size="1.3rem" className="m-0" />{" "}
                     MERCEDES E CLASS 2010 <br />{" "}
                     <span className="small text-secondary">Grey</span>
                   </span>
                 </div>
                 <div className="divider mt-3"></div>
-                <p
+                {/* <p
                   className="report_text mt-3"
                   onClick={() => navigate("/report-ride")}
                 >
                   Report Ride
-                </p>
+                </p> */}
                 <div className="mt-3 text-center">
                   <button
-                    className="app_button"
+                    className="app_button p-3"
                     onClick={() => navigate("/book-ride")}
                   >
                     Continue

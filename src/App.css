@@ -8,7 +8,7 @@ body {
 }
 
 .input_field {
-  background-color: white;
+  background-color: transparent;
   border: 1px solid #a4a4a4;
   border-radius: 5px;
   width: 100%;
@@ -26,29 +26,38 @@ body {
   resize: none;
 }
 .app_button {
-  background-color: #0d6efd;
+  background-color: #000000;
   color: white;
   border: none;
   border-radius: 5px;
   font-size: 13px;
-  padding: 5px 20px;
+  padding: 7px 20px;
 }
+.bold {
+  cursor: pointer;
+  font-weight: bold;
+}
+.not_bold {
+  cursor: pointer;
+}
+
+
 .danger_button {
-  background-color: #ff4747;
+  background-color: #ff0000;
   color: white;
   border: none;
   border-radius: 5px;
   font-size: 13px;
   padding: 5px 20px;
 }
-.inactive_danger_button{
-  border: 1px solid #ff4747;
+.inactive_danger_button {
+  border: 1px solid #ff0000;
   border-radius: 5px;
   font-size: 13px;
   padding: 5px 20px;
 }
 .report_text {
-  color: #0d6efd;
+  color: #000000;
   font-weight: bold;
   cursor: pointer;
 }
@@ -68,11 +77,11 @@ body {
 .app_button_second {
   border: none;
   background-color: white;
-  color: #0d6efd;
+  color: #000000;
 }
 
 .forgot_p {
-  color: #0d6efd;
+  color: #000000;
   font-size: 13px;
 }
 .logo {
@@ -84,7 +93,7 @@ body {
   top: 0;
   width: 100%;
   z-index: 1;
-  background-color: rgba(255, 255, 255, 0.844);
+  background-color: rgb(255, 255, 255);
 }
 
 .fullname {
@@ -107,7 +116,10 @@ body {
 }
 
 .date_joined {
-  color: #0d6efd;
+  color: #000000;
+}
+.search_ride_input{
+  /* width: 200px; */
 }
 .from_to {
   /* font-weight: 500; */
@@ -119,7 +131,7 @@ body {
 .results_card {
   border-radius: 20px !important;
   border: none !important;
-  background-color: #0d6dfd08 !important;
+  background-color: white !important;
 }
 .profile {
   border-radius: 50%;
@@ -153,7 +165,7 @@ body {
 .ride_details_user:hover p,
 .ride_details_user:hover .arrow,
 .ride_details_user:hover span {
-  color: #0d6efd;
+  color: #000000;
 }
 .ride_details_user span {
   color: grey;
@@ -224,4 +236,8 @@ body {
   .pub_web {
     display: none;
   }
+}
+
+.searchhhhh{
+  /* width: 200px; */
 }

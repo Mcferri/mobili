@@ -3,7 +3,7 @@ import { Col, Row } from "reactstrap";
 export default function CompHeader({ children, header }) {
   return (
     <>
-      <div className="p-3 mt-5">
+      <div className="p-3">
         <h4
           className="text-center page_title"
           style={{ fontWeight: 900, fontSize: 40 }}
