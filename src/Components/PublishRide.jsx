@@ -9,13 +9,18 @@ export default function PublishRide() {
   const [modal, setModal] = useState(false);
   const formData = {
     date: "",
-    from: "",
-    to: "",
-    time: "",
-    price: "",
+    dropoff_location: "",
+    from_location: "",
     gender: "",
-    seatsAvailable: "",
+    pickup_location: "",
+    seat_price: "",
+    seats: "",
+    time: "",
+    to_location: "",
+    car_id: "",
   };
+  const [cars, setCars] = useState([]);
+
   const [publishRide, setPublishRide] = useState(formData);
   const [loading, setLoading] = useState(false);
   const loggedInUser = useSelector((state) => state?.auth?.user);
@@ -29,8 +34,37 @@ export default function PublishRide() {
     setPublishRide({ ...publishRide, [e.target.name]: e.target.value });
   };
 
-  //handle submit
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    axios
+      .post(
+        `${api}/rides/create`,
+        {
+          date: publishRide.date,
+          dropoff_location: publishRide.dropoff_location,
+          from_location: publishRide.from_location,
+          gender: publishRide.gender,
+          pickup_location: publishRide.pickup_location,
+          seat_price: publishRide.seat_price,
+          seats: publishRide.dropoff_location,
+          time: publishRide.time,
+          to_location: publishRide.to_location,
+        },
+        {
+          headers: {
+            "x-token": xtoken,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        setLoading(false);
+      })
+      .catch((e) => {
+        console.log(e);
+        setLoading(false);
+      });
     console.log(publishRide);
   };
 
@@ -58,6 +92,26 @@ export default function PublishRide() {
     }
   }, []);
 
+  useEffect(() => {
+    if (xtoken) {
+      setLoading(true);
+      axios
+        .get(`${api}/cars/user/all`, {
+          headers: {
+            "x-token": xtoken,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setCars(response?.data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setLoading(false);
+          console.log("error fetching data", err);
+        });
+    }
+  }, []);
   return (
     <div className="p-3 mt-5">
       <h4
@@ -69,6 +123,8 @@ export default function PublishRide() {
       <Row>
         <Col xl={4} lg={4} md={4} sm={12} xs={12}></Col>
         <Col xl={4} lg={4} md={4} sm={12} xs={12}>
+          {/* {JSON.stringify(cars)} */}
+          {JSON.stringify(publishRide)}
           {loading ? (
             <div className="text-center">
               <span className="">Loading data...</span>
@@ -76,8 +132,8 @@ export default function PublishRide() {
           ) : (
             <Row>
               <Col md={6} className="mt-3">
-                {/* {JSON.stringify(xtoken)}
-                {JSON.stringify(loggedInUser)} */}
+                {/* {JSON.stringify(xtoken)} */}
+                {/* {JSON.stringify(loggedInUser)} */}
                 <label className="label">When are you leaving?</label>
                 <input
                   className="input_field"
@@ -94,8 +150,8 @@ export default function PublishRide() {
                 <input
                   className="input_field"
                   type="time"
-                  name="timeFrom"
-                  value={publishRide.timeFrom}
+                  name="time"
+                  value={publishRide.time}
                   onChange={handleChange}
                 />
               </Col>
@@ -104,8 +160,8 @@ export default function PublishRide() {
                 <input
                   className="input_field"
                   type="text"
-                  name="from"
-                  value={publishRide.from}
+                  name="from_location"
+                  value={publishRide.from_location}
                   onChange={handleChange}
                 />
               </Col>
@@ -114,8 +170,8 @@ export default function PublishRide() {
                 <input
                   className="input_field"
                   type="text"
-                  name="to"
-                  value={publishRide.to}
+                  name="to_location"
+                  value={publishRide.to_location}
                   onChange={handleChange}
                 />
               </Col>
@@ -124,8 +180,8 @@ export default function PublishRide() {
                 <input
                   className="input_field"
                   type="text"
-                  name="to"
-                  value={publishRide.to}
+                  name="pickup_location"
+                  value={publishRide.pickup_location}
                   onChange={handleChange}
                 />
               </Col>
@@ -134,8 +190,8 @@ export default function PublishRide() {
                 <input
                   className="input_field"
                   type="text"
-                  name="to"
-                  value={publishRide.to}
+                  name="dropoff_location"
+                  value={publishRide.dropoff_location}
                   onChange={handleChange}
                 />
               </Col>
@@ -157,8 +213,8 @@ export default function PublishRide() {
                 <input
                   className="input_field"
                   type="number"
-                  name="price"
-                  value={publishRide.price}
+                  name="seat_price"
+                  value={publishRide.seat_price}
                   onChange={handleChange}
                 />
               </Col>
@@ -167,8 +223,8 @@ export default function PublishRide() {
                 <input
                   className="input_field"
                   type="number"
-                  name="seatsAvailable"
-                  value={publishRide.seatsAvailable}
+                  name="seats"
+                  value={publishRide.seats}
                   onChange={handleChange}
                 />
               </Col>
@@ -176,19 +232,36 @@ export default function PublishRide() {
                 <label className="label">Select a car</label>
                 <select
                   className="input_field"
-                  name="gender"
-                  value={publishRide.gender}
+                  name="car_id"
+                  value={publishRide.car_id}
                   onChange={handleChange}
                 >
                   <option>--car--</option>
-                  <option>Mercedes</option>
-                  <option>Honda</option>
+                  {cars.map((item, index) => (
+                    <option value={item?.id} key={index}>
+                      {item?.brand} {item?.model}
+                    </option>
+                  ))}
                 </select>
               </Col>
               <div className="mt-3">
-                <button className="app_button auth p-3" onClick={handleSubmit}>
-                  Publish
-                </button>
+                {loading ? (
+                  <button
+                    disabled={loading}
+                    className="app_button p-3"
+                    style={{ width: "100%", fontWeight: "bold" }}
+                  >
+                    Publishing...
+                  </button>
+                ) : (
+                  <button
+                    className="app_button p-3"
+                    onClick={handleSubmit}
+                    style={{ width: "100%", fontWeight: "bold" }}
+                  >
+                    Publish
+                  </button>
+                )}
               </div>
             </Row>
           )}

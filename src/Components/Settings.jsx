@@ -11,7 +11,7 @@ export default function Settings() {
     setModal(!modal);
   };
   return (
-    <>
+    <div className="mt-5">
       <CompHeader header={"Settings"}>
         <Row>
           <Col md={4}></Col>
@@ -35,6 +35,6 @@ export default function Settings() {
           <Col md={4}></Col>
         </Row>
       </CompHeader>
-    </>
+    </div>
   );
 }

@@ -19,6 +19,7 @@ export default function CreateCar() {
     c_license: "",
     c_type: "",
     color: "",
+    model: "",
   };
   const [createCar, setCreateCar] = useState(formData);
 
@@ -37,6 +38,7 @@ export default function CreateCar() {
           c_license: createCar.c_license,
           c_type: createCar.c_type,
           color: createCar.color,
+          model: createCar.model,
         },
         {
           headers: {
@@ -45,7 +47,10 @@ export default function CreateCar() {
         }
       )
       .then((response) => {
-        console.log(response);
+        console.log(response?.status);
+        if (response?.status === 201) {
+          navigate("/my-cars");
+        }
         setLoading(false);
       })
       .catch((e) => {
@@ -84,8 +89,8 @@ export default function CreateCar() {
                       minLength={2}
                       className="input_field"
                       type="text"
-                      name="carModel"
-                      value={createCar.carModel}
+                      name="model"
+                      value={createCar.model}
                       onChange={handleChange}
                     />
                   </Col>
