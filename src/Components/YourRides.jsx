@@ -1,12 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Col, Row } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import icon from "../assets/images/path.png";
+import { api } from "../helper/apis";
+import axios from "axios";
+import moment from "moment";
+
 export default function YourRides() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const userData = JSON.parse(localStorage.getItem("access_token"));
+  const xtoken = userData?.access_token;
+  const [rides, setRides] = useState([]);
   useEffect(() => {
     if (!localStorage.getItem("access_token")) {
       navigate("/auth");
+    }
+  }, []);
+  useEffect(() => {
+    if (xtoken) {
+      setLoading(true);
+      axios
+        .get(`${api}/rides/published/rides`, {
+          headers: {
+            "x-token": xtoken,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setRides(response?.data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setLoading(false);
+          console.log("error fetching data", err);
+        });
     }
   }, []);
   return (
@@ -20,33 +48,56 @@ export default function YourRides() {
       <Row className="">
         <Col md={3}></Col>
         <Col md={6}>
-          <Card
-            className="mb-3 results_card shadow-sm p-3"
-            onClick={() => navigate("/ride-details")}
-          >
-            <Row>
-              <Col md={6} sm={8} xs={8}>
-                <div className="d-flex" style={{ gap: 10 }}>
-                  <div>
-                    <p className="rides_avail">12:00 AM</p>
-                    <p className="rides_avail">12:30 AM</p>
-                  </div>
-                  <div>
-                    <img src={icon} style={{ width: 12 }} />
-                  </div>
-                  <div>
-                    <p className="rides_avail">Kano</p>
-                    <p className="rides_avail">Jigawa</p>
-                  </div>
-                </div>
-              </Col>
-              <Col md={6} sm={4} xs={4}>
-                <p className="rides_avail" style={{ float: "right" }}>
-                  NGN 5,000
-                </p>
-              </Col>
-            </Row>
-          </Card>{" "}
+          {loading ? (
+            <div className="text-center">
+              <span className="">Loading your cars...</span>
+            </div>
+          ) : (
+            <>
+              {/* {JSON.stringify(rides)} */}
+              {rides?.map((item, index) => (
+                <Card
+                  key={index}
+                  className="mb-3 results_card shadow-sm p-3"
+                  onClick={() => navigate("/ride-details")}
+                >
+                  <Row>
+                    <Col md={6} sm={8} xs={8}>
+                      <p>{moment(item?.date).format("MMM DD, YYYY")}</p>
+                      <div className="d-flex" style={{ gap: 10 }}>
+                        <div>
+                          <p className="rides_avail">{item?.time}</p>
+                          {/* <p className="rides_avail">12:30 AM</p> */}
+                        </div>
+                        <div>
+                          <img src={icon} style={{ width: 12 }} />
+                        </div>
+                        <div>
+                          <p className="rides_avail">
+                            <span style={{ fontWeight: 20, color: "grey" }}>
+                              {item?.pickup_location},
+                            </span>{" "}
+                            {item?.from_location}
+                          </p>
+                          <p className="rides_avail">
+                            <span style={{ fontWeight: 20, color: "grey" }}>
+                              {item?.dropoff_location},
+                            </span>{" "}
+                            {item?.to_location}
+                          </p>
+                        </div>
+                      </div>
+                    </Col>
+                    <Col md={6} sm={4} xs={4}>
+                      <p className="rides_avail" style={{ float: "right" }}>
+                        NGN {item?.seat_price}
+                      </p>
+                    </Col>
+                  </Row>
+                </Card>
+              ))}
+            </>
+          )}
         </Col>
         <Col md={3}></Col>
       </Row>

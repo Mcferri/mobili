@@ -95,7 +95,7 @@ export default function NavigationMenu() {
             </DropdownToggle>
             <DropdownMenu className="shadow profile_dropdown p-3">
               <div
-                onClick={() => navigate("/your-rides")}
+                onClick={() => navigate("/my-rides")}
                 style={{ gap: 10 }}
                 className="profile_drop_item d-flex justify-content-between align-items-center"
               >
@@ -113,7 +113,7 @@ export default function NavigationMenu() {
               </div>
               <hr />
               <div
-                onClick={() => navigate("/your-rides")}
+                onClick={() => navigate("/my-rides")}
                 style={{ gap: 10 }}
                 className="profile_drop_item d-flex justify-content-between align-items-center"
               >
@@ -131,7 +131,7 @@ export default function NavigationMenu() {
               </div>
               <hr />
               <div
-                onClick={() => navigate("/my-cars")}
+                onClick={() => navigate("/my-vehicles")}
                 style={{ gap: 10 }}
                 className="profile_drop_item d-flex justify-content-between align-items-center"
               >

@@ -5,40 +5,48 @@ import { Col, Modal, Row } from "reactstrap";
 import { useState } from "react";
 import axios from "axios";
 import { api } from "../helper/apis";
-export default function CreateCar() {
+import { useQuery } from "../helpers/helpers";
+
+export default function EditCar() {
+  const query = useQuery();
+  const car_id = query.get(`id`);
+  const brand = query.get(`brand`);
+  const c_type = query.get(`type`);
+  const c_license = query.get(`license`);
+  const color = query.get(`color`);
+  const model = query.get(`model`);
+
+  const formData = {
+    brand: brand,
+    c_license: c_license,
+    c_type: c_type,
+    color: color,
+    model: model,
+  };
   const navigate = useNavigate();
+
   const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const userData = JSON.parse(localStorage.getItem("access_token"));
   const xtoken = userData?.access_token;
-  const toggleModal = () => {
-    setModal(!modal);
-  };
-  const formData = {
-    brand: "",
-    c_license: "",
-    c_type: "",
-    color: "",
-    model: "",
-  };
-  const [createCar, setCreateCar] = useState(formData);
+  const [editVehicle, setEditVehicle] = useState(formData);
 
   const handleChange = (e) => {
-    setCreateCar({ ...createCar, [e.target.name]: e.target.value });
+    setEditVehicle({ ...editVehicle, [e.target.name]: e.target.value });
   };
-
+  const fasf = `${api}/cars/update/${car_id}/car`;
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
     axios
-      .post(
-        `${api}/cars/create`,
+      .put(
+        `${api}/cars/update/${car_id}/car`,
         {
-          brand: createCar.brand,
-          c_license: createCar.c_license,
-          c_type: createCar.c_type,
-          color: createCar.color,
-          model: createCar.model,
+          brand: editVehicle.brand,
+          c_license: editVehicle.c_license,
+          c_type: editVehicle.c_type,
+          color: editVehicle.color,
+          model: editVehicle.model,
         },
         {
           headers: {
@@ -47,8 +55,8 @@ export default function CreateCar() {
         }
       )
       .then((response) => {
-        console.log(response?.status);
-        if (response?.status === 201) {
+        console.log(response);
+        if (response?.status === 200) {
           navigate("/my-vehicles");
         }
         setLoading(false);
@@ -57,16 +65,16 @@ export default function CreateCar() {
         console.log(e);
         setLoading(false);
       });
-    console.log(createCar);
+    console.log(editVehicle);
   };
   return (
     <div className="mt-5">
-      <CompHeader header={"Create Car"}>
+      <CompHeader header={"Edit vehicle"}>
         <Row>
           <Col md={4}></Col>
           <Col md={4}>
             <div className="mt-3">
-              {/* {JSON.stringify(createCar)} */}
+              {/* {JSON.stringify(fasf)} */}
               {/* {JSON.stringify(xtoken)} */}
               <form onSubmit={handleSubmit}>
                 <Row>
@@ -78,7 +86,7 @@ export default function CreateCar() {
                       className="input_field"
                       type="text"
                       name="brand"
-                      value={createCar.brand}
+                      value={editVehicle.brand}
                       onChange={handleChange}
                     />
                   </Col>
@@ -90,7 +98,7 @@ export default function CreateCar() {
                       className="input_field"
                       type="text"
                       name="model"
-                      value={createCar.model}
+                      value={editVehicle.model}
                       onChange={handleChange}
                     />
                   </Col>
@@ -102,7 +110,7 @@ export default function CreateCar() {
                       className="input_field"
                       type="text"
                       name="c_type"
-                      value={createCar.c_type}
+                      value={editVehicle.c_type}
                       onChange={handleChange}
                     />
                   </Col>
@@ -114,7 +122,7 @@ export default function CreateCar() {
                       className="input_field"
                       type="text"
                       name="color"
-                      value={createCar.color}
+                      value={editVehicle.color}
                       onChange={handleChange}
                     />
                   </Col>
@@ -126,7 +134,7 @@ export default function CreateCar() {
                       className="input_field"
                       type="text"
                       name="c_license"
-                      value={createCar.c_license}
+                      value={editVehicle.c_license}
                       onChange={handleChange}
                     />
                   </Col>
@@ -137,14 +145,14 @@ export default function CreateCar() {
                         className="app_button p-3"
                         style={{ width: "100%", fontWeight: "bold" }}
                       >
-                        Loading...
+                        Saving...
                       </button>
                     ) : (
                       <button
                         className="app_button p-3"
                         style={{ width: "100%", fontWeight: "bold" }}
                       >
-                        Create
+                        Save
                       </button>
                     )}
                   </div>

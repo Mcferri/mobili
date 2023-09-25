@@ -7,9 +7,17 @@ body {
   --inputBgColor: rgb(237, 237, 237);
 }
 
-.input_field {
+/* .input_field {
   background-color: transparent;
   border: 1px solid #a4a4a4;
+  border-radius: 5px;
+  width: 100%;
+  padding: 10px;
+  display: inline;
+} */
+.input_field {
+  background-color: rgb(235, 235, 235);
+  border: none;
   border-radius: 5px;
   width: 100%;
   padding: 10px;

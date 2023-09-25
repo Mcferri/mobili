@@ -12,9 +12,13 @@ export default function SearchResults() {
       navigate("/auth");
     }
   }, []);
+
   return (
     <div className="p-3 mt-5">
-     <h4 className="text-center page_title" style={{ fontWeight: 900, fontSize: 40 }}>
+      <h4
+        className="text-center page_title"
+        style={{ fontWeight: 900, fontSize: 40 }}
+      >
         Available rides
       </h4>
       <Row>

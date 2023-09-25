@@ -18,9 +18,10 @@ import SearchRide from "../Components/SearchRide";
 import EditProfile from "../Components/EditProfile";
 import Settings from "../Components/Settings";
 import DeleteAccount from "../Components/DeleteAccount";
-import MyCars from "../Components/MyCars";
 import CreateCar from "../Components/CreateCar";
 import SignupMessage from "../Components/SignupMessage";
+import EditCar from "../Components/EditCar";
+import MyVehicles from "../Components/MyVehicles";
 
 function AppNavigation() {
   let element = useRoutes([
@@ -78,7 +79,7 @@ function AppNavigation() {
           element: <PaymentMethod />,
         },
         {
-          path: "/your-rides",
+          path: "/my-rides",
           element: <YourRides />,
         },
         {
@@ -94,10 +95,11 @@ function AppNavigation() {
           element: <DeleteAccount />,
         },
         {
-          path: "/my-cars",
-          element: <MyCars />,
+          path: "/my-vehicles",
+          element: <MyVehicles />,
         },
         { path: "/create-new-car", element: <CreateCar /> },
+        { path: "/edit-car", element: <EditCar /> },
       ],
     },
     {

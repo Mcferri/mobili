@@ -47,9 +47,10 @@ export default function PublishRide() {
           gender: publishRide.gender,
           pickup_location: publishRide.pickup_location,
           seat_price: publishRide.seat_price,
-          seats: publishRide.dropoff_location,
+          seats: publishRide.seats,
           time: publishRide.time,
           to_location: publishRide.to_location,
+          car_id: publishRide.car_id,
         },
         {
           headers: {
@@ -58,7 +59,10 @@ export default function PublishRide() {
         }
       )
       .then((response) => {
-        console.log(response);
+        console.log(response?.status);
+        if (response?.status === 201) {
+          navigate("/my-rides");
+        }
         setLoading(false);
       })
       .catch((e) => {
@@ -124,7 +128,7 @@ export default function PublishRide() {
         <Col xl={4} lg={4} md={4} sm={12} xs={12}></Col>
         <Col xl={4} lg={4} md={4} sm={12} xs={12}>
           {/* {JSON.stringify(cars)} */}
-          {JSON.stringify(publishRide)}
+          {/* {JSON.stringify(publishRide)} */}
           {loading ? (
             <div className="text-center">
               <span className="">Loading data...</span>
@@ -236,10 +240,10 @@ export default function PublishRide() {
                   value={publishRide.car_id}
                   onChange={handleChange}
                 >
-                  <option>--car--</option>
-                  {cars.map((item, index) => (
-                    <option value={item?.id} key={index}>
-                      {item?.brand} {item?.model}
+                  <option value="">--car--</option>
+                  {cars.map((car) => (
+                    <option value={car.id} key={car.id}>
+                      {car.brand} {car.model}
                     </option>
                   ))}
                 </select>
