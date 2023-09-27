@@ -35,17 +35,17 @@ function RiderProfile() {
               <p>5/5 - 1 rating</p>
             </div>
             <div>
-              <MdArrowForwardIos
+              {/* <MdArrowForwardIos
                 size="1.2rem"
-                className="arrow text-secondary"
-              />
+                className="arrow "
+              /> */}
             </div>
           </div>
           <hr className="hr" />
           <div className="mt-3">
-            <span className="text-secondary">
+            <span className="">
               <BsShieldFillCheck
-                color="#949494"
+                color="#0D6EFD"
                 size="1.3rem"
                 className="m-0"
               />{" "}
@@ -53,9 +53,9 @@ function RiderProfile() {
             </span>
           </div>
           <div className="mt-3">
-            <span className="text-secondary">
+            <span className="">
               <BsShieldFillCheck
-                color="#949494"
+                color="#0D6EFD"
                 size="1.3rem"
                 className="m-0"
               />{" "}

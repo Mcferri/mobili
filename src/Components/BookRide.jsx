@@ -17,7 +17,7 @@ export default function BookRide() {
       <Row>
         <Col md={3}></Col>
         <Col md={6} className="mt-5">
-          <p className="rides_avail">Tue, 15 August at 12:00</p>
+          <p className="rides_avail" style={{fontWeight:700}}>Tue, 15 August at 12:00</p>
           <div className="d-flex" style={{ gap: 10 }}>
             <div>
               <img src={icon} style={{ width: 13 }} />
@@ -29,7 +29,7 @@ export default function BookRide() {
           </div>
           <div className="divider"></div>
           <div className="d-flex justify-content-between align-items-center mt-3 mb-3">
-            <p className="m-0" style={{ fontSize: 13 }}>
+            <p className="m-0" style={{ fontSize:'' }}>
               Total price for 2 passengers
             </p>
             <p className="m-0 rides_avail">NGN 30,000</p>
@@ -37,7 +37,7 @@ export default function BookRide() {
 
           <div className="mt-3 text-center">
             <button
-              className="app_button p-3"
+              className="app_button"
               onClick={() => navigate("/payment-method")}
             >
               Pay NGN30,000

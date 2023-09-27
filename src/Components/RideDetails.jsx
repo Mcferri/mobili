@@ -39,10 +39,10 @@ export default function RideDetails() {
           </div>
           <div className="divider"></div>
           <div className="d-flex justify-content-between align-items-center mt-3 mb-3">
-            <p className="m-0" style={{ fontSize: 13 }}>
+            <p className="m-0" style={{  }}>
               Total price for 2 passengers
             </p>
-            <p className="m-0 rides_avail">NGN 30,000</p>
+            <p className="m-0 rides_avail" style={{fontWeight:700}}>NGN 30,000</p>
           </div>
           <div className="divider"></div>
           <div>
@@ -58,10 +58,10 @@ export default function RideDetails() {
                     </p>
                     <span
                       className=""
-                      style={{ color: "", fontWeight: "normal" }}
+                    
                     >
                       <AiFillStar
-                        color="#949494"
+                        color="#0D6EFD"
                         size="1.3rem"
                         className="m-0"
                       />{" "}
@@ -79,9 +79,9 @@ export default function RideDetails() {
                   </div>
                 </div>
                 <div className="mt-3">
-                  <span className="text-secondary">
+                  <span className="">
                     <BsShieldFillCheck
-                      color="#949494"
+                      color="#0D6EFD"
                       size="1.3rem"
                       className="m-0"
                     />{" "}
@@ -90,17 +90,17 @@ export default function RideDetails() {
                 </div>
                 <hr className="hr" />
                 <div className="mt-3">
-                  <span className="text-secondary">
-                    <MdAddCall color="#949494" size="1.3rem" className="m-0" />{" "}
+                  <span className="">
+                    <MdAddCall color="#0D6EFD" size="1.3rem" className="m-0" />{" "}
                     Contact Mike John
                   </span>
                 </div>
                 <hr className="hr" />
                 <div className="mt-3">
                   <span className="">
-                    <AiFillCar color="#949494" size="1.3rem" className="m-0" />{" "}
-                    MERCEDES E CLASS 2010 <br />{" "}
-                    <span className="small text-secondary">Grey</span>
+                    <AiFillCar color="#0D6EFD" size="1.3rem" className="m-0" />{" "}
+                    MERCEDES E CLASS 2010 - Grey<br />{" "}
+                    {/* <span className="small text-secondary">Grey</span> */}
                   </span>
                 </div>
                 <div className="divider mt-3"></div>
@@ -112,7 +112,7 @@ export default function RideDetails() {
                 </p> */}
                 <div className="mt-3 text-center">
                   <button
-                    className="app_button p-3"
+                    className="app_button"
                     onClick={() => navigate("/book-ride")}
                   >
                     Continue

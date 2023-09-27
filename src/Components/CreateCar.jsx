@@ -61,7 +61,7 @@ export default function CreateCar() {
   };
   return (
     <div className="mt-5">
-      <CompHeader header={"Create Car"}>
+      <CompHeader header={"Create vehicle"}>
         <Row>
           <Col md={4}></Col>
           <Col md={4}>
@@ -71,7 +71,7 @@ export default function CreateCar() {
               <form onSubmit={handleSubmit}>
                 <Row>
                   <Col md={6} className="mt-3">
-                    <label className="label">Car Brand</label>
+                    <label className="label">Vehicle brand</label>
                     <input
                       required
                       minLength={2}
@@ -83,7 +83,7 @@ export default function CreateCar() {
                     />
                   </Col>
                   <Col md={6} className="mt-3">
-                    <label className="label">Car Model</label>
+                    <label className="label">Vehicle model</label>
                     <input
                       required
                       minLength={2}
@@ -95,7 +95,7 @@ export default function CreateCar() {
                     />
                   </Col>
                   <Col md={6} className="mt-3">
-                    <label className="label">Car Type</label>
+                    <label className="label">Vehicle type</label>
                     <input
                       required
                       minLength={2}
@@ -107,7 +107,7 @@ export default function CreateCar() {
                     />
                   </Col>
                   <Col md={6} className="mt-3">
-                    <label className="label">Car Color</label>
+                    <label className="label">Vehicle color</label>
                     <input
                       required
                       minLength={2}
@@ -119,7 +119,7 @@ export default function CreateCar() {
                     />
                   </Col>
                   <Col md={6} className="mt-3">
-                    <label className="label">Driver License</label>
+                    <label className="label">Driver license</label>
                     <input
                       required
                       minLength={2}
@@ -134,15 +134,15 @@ export default function CreateCar() {
                     {loading ? (
                       <button
                         disabled={loading}
-                        className="app_button p-3"
-                        style={{ width: "100%", fontWeight: "bold" }}
+                        className="app_button p-2"
+                        style={{ width: "100%"}}
                       >
                         Loading...
                       </button>
                     ) : (
                       <button
-                        className="app_button p-3"
-                        style={{ width: "100%", fontWeight: "bold" }}
+                        className="app_button p-2"
+                        style={{ width: "100%"}}
                       >
                         Create
                       </button>

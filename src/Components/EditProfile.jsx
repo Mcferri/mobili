@@ -114,20 +114,29 @@ export default function EditProfile() {
                 rows="5"
               ></textarea>
             </Col>
+            <div className="mt-3">
+              {loading ? (
+                <button
+                  className="app_button p-2"
+                  style={{ width: "100%" }}
+                  disabled
+                >
+                  Saving...
+                </button>
+              ) : (
+                <button
+                  className="app_button p-2"
+                  style={{ width: "100%" }}
+                  onClick={handleSubmit}
+                >
+                  Save
+                </button>
+              )}
+            </div>
           </Row>
         </Col>
       </Row>
-      <div className="m-0 text-center mt-3">
-        {loading ? (
-          <button className="app_button p-3" disabled>
-            Saving...
-          </button>
-        ) : (
-          <button className="app_button p-3" onClick={handleSubmit}>
-            Save
-          </button>
-        )}
-      </div>
+      {/* <div className="m-0 text-center mt-3"></div> */}
     </div>
   );
 }

@@ -38,6 +38,7 @@ export default function WriteReport() {
                 id=""
                 cols="30"
                 rows="10"
+                placeholder="Start writing here..."
               ></textarea>
               <div className="mt-4 text-center">
                 {reportData && (

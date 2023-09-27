@@ -49,7 +49,7 @@ export default function DeleteAccount() {
     }
   };
   return (
-    <>
+    <div className="mt-5">
       <CompHeader header={"Delete Account"}>
         <Row>
           <Col md={4}></Col>
@@ -110,6 +110,6 @@ export default function DeleteAccount() {
           <Col md={4}></Col>
         </Row>
       </CompHeader>
-    </>
+    </div>
   );
 }

@@ -17,8 +17,8 @@ export default function RideDetails() {
         Enter your credit card details
       </h4>
       <Row className="mt-5">
-        <Col md={3}></Col>
-        <Col md={6} className="">
+        <Col md={4}></Col>
+        <Col md={4} className="">
           <div>
             <label className="label">Card holder name</label>
             <input type="text" className="input_field" />
@@ -50,10 +50,10 @@ export default function RideDetails() {
             </p>
           </div>
           <div className="mt-3 text-center">
-            <button className="app_button p-3">Pay NGN30,000</button>
+            <button className="app_button" style={{width:'100%'}}>Pay NGN30,000</button>
           </div>
         </Col>
-        <Col md={3}></Col>
+        <Col md={4}></Col>
       </Row>
     </div>
   );

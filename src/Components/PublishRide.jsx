@@ -252,16 +252,16 @@ export default function PublishRide() {
                 {loading ? (
                   <button
                     disabled={loading}
-                    className="app_button p-3"
-                    style={{ width: "100%", fontWeight: "bold" }}
+                    className="app_button p-2"
+                    style={{ width: "100%",  }}
                   >
                     Publishing...
                   </button>
                 ) : (
                   <button
-                    className="app_button p-3"
+                    className="app_button p-2"
                     onClick={handleSubmit}
-                    style={{ width: "100%", fontWeight: "bold" }}
+                    style={{ width: "100%",  }}
                   >
                     Publish
                   </button>
