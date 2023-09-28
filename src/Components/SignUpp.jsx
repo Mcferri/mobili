@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Col, Row } from "reactstrap";
 import { login, loginFailure, signup } from "../redux/actions";
-import logo from "../assets/images/4 1.SVG";
+import logo from "../assets/images/41.SVG";
 import { api } from "../helper/apis";
 import axios from "axios";
 
