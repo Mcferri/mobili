@@ -6,7 +6,7 @@ import { TbLogout } from "react-icons/tb";
 import { PiCarSimpleLight } from "react-icons/pi";
 import { AiOutlineBell, AiOutlineUser } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/images/21.SVG";
+// import logo from "../assets/images/21.SVG";
 
 import {
   MdOutlineKeyboardArrowDown,
