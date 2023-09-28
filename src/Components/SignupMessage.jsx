@@ -2,7 +2,7 @@ import { MdArrowForwardIos } from "react-icons/md";
 import CompHeader from "../CustomComponents/CompHeder";
 import { useNavigate } from "react-router-dom";
 import { Col, Modal, Row } from "reactstrap";
-import logo from "../assets/images/wenyfour-black.PNG";
+// import logo from "../assets/images/wenyfour-black.PNG";
 import { useState } from "react";
 export default function Settings() {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ export default function Settings() {
   return (
     <>
       <div className="text-center mt-5">
-        <img src={logo} alt="" style={{ width: 200 }} />
+        <img src="https://res.cloudinary.com/dx5ilizca/image/upload/v1695924744/41_heqf9s.svg" alt="" style={{ width: 200 }} />
       </div>
       <CompHeader header={"Verify your email"}>
         <Row>
