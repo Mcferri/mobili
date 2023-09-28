@@ -18,7 +18,7 @@ body {
 } */
 .input_field {
   background-color: var(--inputBgColor);
-  border: none;
+  border: 1px solid rgb(214, 214, 214);
   border-radius: 5px;
   width: 100%;
   padding: 10px;

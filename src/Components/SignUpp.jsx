@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Col, Row } from "reactstrap";
 import { login, loginFailure, signup } from "../redux/actions";
-import logo from "../assets/images/wenyfour-black.PNG";
+import logo from "../assets/images/4 1.SVG";
 import { api } from "../helper/apis";
 import axios from "axios";
 
@@ -147,19 +147,9 @@ export default function SignUpp() {
                 <p className="forgot_p m-0">Forgot Password</p>
               </div>
               {!loading ? (
-                <button
-                  className="app_button auth mt-3 p-3"
-                  style={{ fontWeight: "bold" }}
-                >
-                  Sign In
-                </button>
+                <button className="app_button auth mt-3 p-3">Sign In</button>
               ) : (
-                <button
-                  className="app_button auth mt-3 p-3"
-                  style={{ fontWeight: "bold" }}
-                >
-                  Loading...
-                </button>
+                <button className="app_button auth mt-3 p-3">Loading...</button>
               )}
             </form>
           ) : (
@@ -245,19 +235,9 @@ export default function SignUpp() {
                 </p>
               </div>
               {!loading ? (
-                <button
-                  className="app_button auth mt-3 p-3"
-                  style={{ fontWeight: "bold" }}
-                >
-                  Sign Up
-                </button>
+                <button className="app_button auth mt-3 p-3">Sign Up</button>
               ) : (
-                <button
-                  className="app_button auth mt-3 p-3"
-                  style={{ fontWeight: "bold" }}
-                >
-                  Loading...
-                </button>
+                <button className="app_button auth mt-3 p-3">Loading...</button>
               )}
             </form>
           )}
