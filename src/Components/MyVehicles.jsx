@@ -88,7 +88,7 @@ export default function MyVehicles() {
                       <p
                         className="m-0"
                         style={{
-                          // fontWeight: "",
+                        
                           textTransform: "uppercase",
                           fontWeight: "bold",
                         }}
