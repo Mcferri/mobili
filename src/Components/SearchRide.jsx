@@ -20,8 +20,10 @@ export default function SearchRide() {
   };
 
   const handleSubmit = () => {
-    console.log(searchData);
-    navigate("/search-results");
+    // console.log(searchData);
+    navigate(
+      `/search-results?start_loc=${searchData.from}&to_loc=${searchData.to}&date=${searchData.date}&seats=${searchData.numberOfSeats}`
+    );
   };
   useEffect(() => {
     if (!localStorage.getItem("access_token")) {
@@ -45,7 +47,7 @@ export default function SearchRide() {
 
   return (
     <div className="p-3 mt-5">
-      {/* {JSON.stringify(searchData)} */}
+      {JSON.stringify(searchData)}
       <h4
         className="text-center page_title"
         style={{ fontWeight: 900, fontSize: 40 }}
@@ -62,12 +64,19 @@ export default function SearchRide() {
           <select
             className="input_field search_ride_input"
             name="from"
+            required
             value={searchData.from}
             onChange={handleChange}
           >
             <option style={{ color: "grey" }}></option>
-            <option>Kano, Nigeria</option>
-            <option>Jigawa, Nigeria</option>
+            <option>Kano</option>
+            <option>Jigawa</option>
+            <option>Bavaria</option>
+            <option>Hessen</option>
+            <option>London</option>
+            <option>Sokoto</option>
+            <option>Zaria</option>
+            <option>Manchester</option>
           </select>
         </div>
         <div>
@@ -76,11 +85,18 @@ export default function SearchRide() {
             className="input_field search_ride_input"
             name="to"
             value={searchData.to}
+            required
             onChange={handleChange}
           >
             <option style={{ color: "grey" }}></option>
-            <option>Kano, Nigeria</option>
-            <option>Jigawa, Nigeria</option>
+            <option>Kano</option>
+            <option>Jigawa</option>
+            <option>Bavaria</option>
+            <option>Hessen</option>
+            <option>Manchester</option>
+            <option>Zamfara</option>
+            <option>London</option>
+            <option>Kaduna</option>
           </select>
         </div>
         <div>

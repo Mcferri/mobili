@@ -66,7 +66,11 @@ export default function YourRides() {
                       <p>{moment(item?.date).format("MMM DD, YYYY")}</p>
                       <div className="d-flex" style={{ gap: 10 }}>
                         <div>
-                          <p className="rides_avail">{item?.time}</p>
+                          <p className="rides_avail">
+                            {" "}
+                            {moment(item?.time, "HH:mm:ss").format("HH:mm A")}
+                          </p>
+
                           {/* <p className="rides_avail">12:30 AM</p> */}
                         </div>
                         <div>

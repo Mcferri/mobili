@@ -1,16 +1,58 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { Card, Col, Row } from "reactstrap";
 import profile from "../assets/images/profile.png";
 import { useNavigate } from "react-router-dom";
 import icon from "../assets/images/path.png";
 import { AiFillStar } from "react-icons/ai";
+import { api } from "../helper/apis";
+import axios from "axios";
+import { useQuery } from "../helpers/helpers";
+import moment from "moment";
+import numeral from "numeral";
+import { MdOutlineAirlineSeatReclineExtra } from "react-icons/md";
 export default function SearchResults() {
+  const query = useQuery();
+  const start_loc = query.get("start_loc");
+  const to_loc = query.get("to_loc");
+  const _date = query.get("date");
   const navigate = useNavigate();
+  const [availableRides, setAvailableRides] = useState([]);
+  const userData = JSON.parse(localStorage.getItem("access_token"));
+  const xtoken = userData?.access_token;
+
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     if (!localStorage.getItem("access_token")) {
       navigate("/auth");
     }
+  }, []);
+
+  const getAvailableRides = () => {
+    if (xtoken) {
+      setLoading(true);
+      axios
+        .get(
+          `${api}/rides/q/search/ride?start_loc=${start_loc}&to_loc=${to_loc}`,
+          {
+            headers: {
+              "x-token": xtoken,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response);
+          setAvailableRides(response?.data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setLoading(false);
+          console.log("error fetching data", err);
+        });
+    }
+  };
+  useEffect(() => {
+    getAvailableRides();
   }, []);
 
   return (
@@ -21,422 +63,102 @@ export default function SearchResults() {
       >
         Available rides
       </h4>
-      <Row>
-        <Col md={3}></Col>
-        <Col md={6}>
-          <div className="mt-3">
-            <p className="results_date">Fri, 21 Jul</p>
-            <p className="from_to">
-              Kano, Nigeria <BsArrowRight size="1.5rem" /> Jigawa, Nigeria
-            </p>
-            <div className="rides-avail-div mb-3">
-              <p className="rides_avail m-0">5 rides available</p>
+      {/* {JSON.stringify(availableRides)} */}
+      {loading ? (
+        <div className="text-center">
+          <span className="">Loading rides...</span>
+        </div>
+      ) : (
+        <Row>
+          <Col md={3}></Col>
+          <Col md={6}>
+            <div className="mt-3">
+              <p className="results_date">
+                {moment(_date).format("ddd, DD MMM")}
+              </p>
+              <p className="from_to">
+                <b>{start_loc}</b> <BsArrowRight size="1.5rem" />{" "}
+                <b>{to_loc}</b>
+              </p>
+              <div className="rides-avail-div mb-3">
+                <p className="rides_avail m-0">
+                  {availableRides.length} rides(s) available
+                </p>
+              </div>
             </div>
-          </div>{" "}
-          <Card
-            className="mb-3 results_card shadow-sm p-3"
-            onClick={() => navigate("/ride-details")}
-          >
-            <Row>
-              <Col md={6} sm={8} xs={8}>
-                <div className="d-flex" style={{ gap: 10 }}>
-                  <div>
-                    <p className="rides_avail">12:00 AM</p>
-                    <p className="rides_avail">12:30 AM</p>
-                  </div>
-                  <div>
-                    <img src={icon} style={{ width: 12 }} />
-                  </div>
-                  <div>
-                    <p className="rides_avail">Kano</p>
-                    <p className="rides_avail">Jigawa</p>
-                  </div>
+            <>
+              {availableRides.map((item, index) => (
+                <Card
+                  key={index}
+                  className="mb-3 results_card shadow-sm p-3"
+                  onClick={() => navigate("/ride-details")}
+                >
+                  <Row className="m-0">
+                    <Col className="m-0" md={6} sm={7} xs={7}>
+                      <div className="d-flex" style={{ gap: 10 }}>
+                        <div>
+                          <p
+                            className="rides_avail"
+                            style={{ fontWeight: "bold" }}
+                          >
+                            {moment(item?.time, "HH:mm:ss").format("HH:mm A")}
+                            {/* {item?.time} */}
+                          </p>
+                          <p className="rides_avail">{}</p>
+                        </div>
+                        <div>
+                          <img src={icon} style={{ width: 12 }} />
+                        </div>
+                        <div>
+                          <p className="rides_avail ">{item?.from_location}</p>
+                          <p className="rides_avail m-0">{item?.to_location}</p>
+                        </div>
+                      </div>
+                    </Col>
+                    <Col className="m-0" md={6} sm={5} xs={5}>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "flex-end",
+                        }}
+                      >
+                        <div>
+                          <p className="rides_avail">
+                            <b>
+                              ₦{numeral(item?.seat_price).format("0,0")}
+                              {/* <span style={{ fontSize: "small" }}> Seat</span> */}
+                            </b>
+                          </p>
+                        </div>
+                        <div>
+                          <p className="m-0">
+                            <MdOutlineAirlineSeatReclineExtra
+                              size="1.5rem"
+                              style={{ color: "#0d6efd" }}
+                            />
+                            - <b>{item?.available_seats}</b>
+                          </p>
+                        </div>
+                      </div>
+                    </Col>
+                  </Row>
+                </Card>
+              ))}{" "}
+              {availableRides.length === 0 ? (
+                <div className="text-center mb-5">
+                  <span className="">
+                    No available rides for today between these cities.
+                  </span>
                 </div>
-              </Col>
-              <Col md={6} sm={4} xs={4}>
-                <p className="rides_avail" style={{ float: "right" }}>
-                  NGN 5,000
-                </p>
-              </Col>
-            </Row>
-            <Row className="mt-3">
-              <Col md={6}>
-                <div className="d-flex align-items-center" style={{ gap: 10 }}>
-                  <img
-                    src={profile}
-                    className="result profile"
-                    alt="profile_pic"
-                  />{" "}
-                  <div
-                    style={{ display: "flex", alignItems: "center", gap: 10 }}
-                  >
-                    <p
-                      className="m-0"
-                      style={{ fontWeight: "bold" }}
-                    >
-                      Mike John{" "}
-                    </p>
-                    <span
-                      style={{
-                        color: "",
-                        fontWeight: "normal",
-                      }}
-                    >
-                      <AiFillStar color="grey" size="1rem" className="m-0" />{" "}
-                      5.0
-                    </span>
-                  </div>
-                </div>
-              </Col>
-              <Col md={6}></Col>
-            </Row>
-          </Card>{" "}
-          <Card
-            className="mb-3 results_card shadow-sm p-3"
-            onClick={() => navigate("/ride-details")}
-          >
-            <Row>
-              <Col md={6} sm={8} xs={8}>
-                <div className="d-flex" style={{ gap: 10 }}>
-                  <div>
-                    <p className="rides_avail">12:00 AM</p>
-                    <p className="rides_avail">12:30 AM</p>
-                  </div>
-                  <div>
-                    <img src={icon} style={{ width: 12 }} />
-                  </div>
-                  <div>
-                    <p className="rides_avail">Kano</p>
-                    <p className="rides_avail">Jigawa</p>
-                  </div>
-                </div>
-              </Col>
-              <Col md={6} sm={4} xs={4}>
-                <p className="rides_avail" style={{ float: "right" }}>
-                  NGN 5,000
-                </p>
-              </Col>
-            </Row>
-            <Row className="mt-3">
-              <Col md={6}>
-                <div className="d-flex align-items-center" style={{ gap: 10 }}>
-                  <img
-                    src={profile}
-                    className="result profile"
-                    alt="profile_pic"
-                  />{" "}
-                  <div
-                    style={{ display: "flex", alignItems: "center", gap: 10 }}
-                  >
-                    <p
-                      className="m-0"
-                      style={{ fontWeight: "bold" }}
-                    >
-                      Mike John{" "}
-                    </p>
-                    <span
-                      style={{
-                        color: "",
-                        fontWeight: "normal",
-                      }}
-                    >
-                      <AiFillStar color="grey" size="1rem" className="m-0" />{" "}
-                      5.0
-                    </span>
-                  </div>
-                </div>
-              </Col>
-              <Col md={6}></Col>
-            </Row>
-          </Card>{" "}<Card
-            className="mb-3 results_card shadow-sm p-3"
-            onClick={() => navigate("/ride-details")}
-          >
-            <Row>
-              <Col md={6} sm={8} xs={8}>
-                <div className="d-flex" style={{ gap: 10 }}>
-                  <div>
-                    <p className="rides_avail">12:00 AM</p>
-                    <p className="rides_avail">12:30 AM</p>
-                  </div>
-                  <div>
-                    <img src={icon} style={{ width: 12 }} />
-                  </div>
-                  <div>
-                    <p className="rides_avail">Kano</p>
-                    <p className="rides_avail">Jigawa</p>
-                  </div>
-                </div>
-              </Col>
-              <Col md={6} sm={4} xs={4}>
-                <p className="rides_avail" style={{ float: "right" }}>
-                  NGN 5,000
-                </p>
-              </Col>
-            </Row>
-            <Row className="mt-3">
-              <Col md={6}>
-                <div className="d-flex align-items-center" style={{ gap: 10 }}>
-                  <img
-                    src={profile}
-                    className="result profile"
-                    alt="profile_pic"
-                  />{" "}
-                  <div
-                    style={{ display: "flex", alignItems: "center", gap: 10 }}
-                  >
-                    <p
-                      className="m-0"
-                      style={{ fontWeight: "bold" }}
-                    >
-                      Mike John{" "}
-                    </p>
-                    <span
-                      style={{
-                        color: "",
-                        fontWeight: "normal",
-                      }}
-                    >
-                      <AiFillStar color="grey" size="1rem" className="m-0" />{" "}
-                      5.0
-                    </span>
-                  </div>
-                </div>
-              </Col>
-              <Col md={6}></Col>
-            </Row>
-          </Card>{" "}<Card
-            className="mb-3 results_card shadow-sm p-3"
-            onClick={() => navigate("/ride-details")}
-          >
-            <Row>
-              <Col md={6} sm={8} xs={8}>
-                <div className="d-flex" style={{ gap: 10 }}>
-                  <div>
-                    <p className="rides_avail">12:00 AM</p>
-                    <p className="rides_avail">12:30 AM</p>
-                  </div>
-                  <div>
-                    <img src={icon} style={{ width: 12 }} />
-                  </div>
-                  <div>
-                    <p className="rides_avail">Kano</p>
-                    <p className="rides_avail">Jigawa</p>
-                  </div>
-                </div>
-              </Col>
-              <Col md={6} sm={4} xs={4}>
-                <p className="rides_avail" style={{ float: "right" }}>
-                  NGN 5,000
-                </p>
-              </Col>
-            </Row>
-            <Row className="mt-3">
-              <Col md={6}>
-                <div className="d-flex align-items-center" style={{ gap: 10 }}>
-                  <img
-                    src={profile}
-                    className="result profile"
-                    alt="profile_pic"
-                  />{" "}
-                  <div
-                    style={{ display: "flex", alignItems: "center", gap: 10 }}
-                  >
-                    <p
-                      className="m-0"
-                      style={{ fontWeight: "bold" }}
-                    >
-                      Mike John{" "}
-                    </p>
-                    <span
-                      style={{
-                        color: "",
-                        fontWeight: "normal",
-                      }}
-                    >
-                      <AiFillStar color="grey" size="1rem" className="m-0" />{" "}
-                      5.0
-                    </span>
-                  </div>
-                </div>
-              </Col>
-              <Col md={6}></Col>
-            </Row>
-          </Card>{" "}<Card
-            className="mb-3 results_card shadow-sm p-3"
-            onClick={() => navigate("/ride-details")}
-          >
-            <Row>
-              <Col md={6} sm={8} xs={8}>
-                <div className="d-flex" style={{ gap: 10 }}>
-                  <div>
-                    <p className="rides_avail">12:00 AM</p>
-                    <p className="rides_avail">12:30 AM</p>
-                  </div>
-                  <div>
-                    <img src={icon} style={{ width: 12 }} />
-                  </div>
-                  <div>
-                    <p className="rides_avail">Kano</p>
-                    <p className="rides_avail">Jigawa</p>
-                  </div>
-                </div>
-              </Col>
-              <Col md={6} sm={4} xs={4}>
-                <p className="rides_avail" style={{ float: "right" }}>
-                  NGN 5,000
-                </p>
-              </Col>
-            </Row>
-            <Row className="mt-3">
-              <Col md={6}>
-                <div className="d-flex align-items-center" style={{ gap: 10 }}>
-                  <img
-                    src={profile}
-                    className="result profile"
-                    alt="profile_pic"
-                  />{" "}
-                  <div
-                    style={{ display: "flex", alignItems: "center", gap: 10 }}
-                  >
-                    <p
-                      className="m-0"
-                      style={{ fontWeight: "bold" }}
-                    >
-                      Mike John{" "}
-                    </p>
-                    <span
-                      style={{
-                        color: "",
-                        fontWeight: "normal",
-                      }}
-                    >
-                      <AiFillStar color="grey" size="1rem" className="m-0" />{" "}
-                      5.0
-                    </span>
-                  </div>
-                </div>
-              </Col>
-              <Col md={6}></Col>
-            </Row>
-          </Card>{" "}<Card
-            className="mb-3 results_card shadow-sm p-3"
-            onClick={() => navigate("/ride-details")}
-          >
-            <Row>
-              <Col md={6} sm={8} xs={8}>
-                <div className="d-flex" style={{ gap: 10 }}>
-                  <div>
-                    <p className="rides_avail">12:00 AM</p>
-                    <p className="rides_avail">12:30 AM</p>
-                  </div>
-                  <div>
-                    <img src={icon} style={{ width: 12 }} />
-                  </div>
-                  <div>
-                    <p className="rides_avail">Kano</p>
-                    <p className="rides_avail">Jigawa</p>
-                  </div>
-                </div>
-              </Col>
-              <Col md={6} sm={4} xs={4}>
-                <p className="rides_avail" style={{ float: "right" }}>
-                  NGN 5,000
-                </p>
-              </Col>
-            </Row>
-            <Row className="mt-3">
-              <Col md={6}>
-                <div className="d-flex align-items-center" style={{ gap: 10 }}>
-                  <img
-                    src={profile}
-                    className="result profile"
-                    alt="profile_pic"
-                  />{" "}
-                  <div
-                    style={{ display: "flex", alignItems: "center", gap: 10 }}
-                  >
-                    <p
-                      className="m-0"
-                      style={{ fontWeight: "bold" }}
-                    >
-                      Mike John{" "}
-                    </p>
-                    <span
-                      style={{
-                        color: "",
-                        fontWeight: "normal",
-                      }}
-                    >
-                      <AiFillStar color="grey" size="1rem" className="m-0" />{" "}
-                      5.0
-                    </span>
-                  </div>
-                </div>
-              </Col>
-              <Col md={6}></Col>
-            </Row>
-          </Card>{" "}<Card
-            className="mb-3 results_card shadow-sm p-3"
-            onClick={() => navigate("/ride-details")}
-          >
-            <Row>
-              <Col md={6} sm={8} xs={8}>
-                <div className="d-flex" style={{ gap: 10 }}>
-                  <div>
-                    <p className="rides_avail">12:00 AM</p>
-                    <p className="rides_avail">12:30 AM</p>
-                  </div>
-                  <div>
-                    <img src={icon} style={{ width: 12 }} />
-                  </div>
-                  <div>
-                    <p className="rides_avail">Kano</p>
-                    <p className="rides_avail">Jigawa</p>
-                  </div>
-                </div>
-              </Col>
-              <Col md={6} sm={4} xs={4}>
-                <p className="rides_avail" style={{ float: "right" }}>
-                  NGN 5,000
-                </p>
-              </Col>
-            </Row>
-            <Row className="mt-3">
-              <Col md={6}>
-                <div className="d-flex align-items-center" style={{ gap: 10 }}>
-                  <img
-                    src={profile}
-                    className="result profile"
-                    alt="profile_pic"
-                  />{" "}
-                  <div
-                    style={{ display: "flex", alignItems: "center", gap: 10 }}
-                  >
-                    <p
-                      className="m-0"
-                      style={{ fontWeight: "bold" }}
-                    >
-                      Mike John{" "}
-                    </p>
-                    <span
-                      style={{
-                        color: "",
-                        fontWeight: "normal",
-                      }}
-                    >
-                      <AiFillStar color="grey" size="1rem" className="m-0" />{" "}
-                      5.0
-                    </span>
-                  </div>
-                </div>
-              </Col>
-              <Col md={6}></Col>
-            </Row>
-          </Card>{" "}
-        </Col>
-        <Col md={3}></Col>
-      </Row>
+              ) : (
+                ""
+              )}
+            </>
+          </Col>
+          <Col md={3}></Col>
+        </Row>
+      )}
     </div>
   );
 }

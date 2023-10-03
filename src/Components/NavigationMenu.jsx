@@ -43,7 +43,7 @@ export default function NavigationMenu() {
             src="https://res.cloudinary.com/dx5ilizca/image/upload/v1695924745/21_lepo8j.svg"
             onClick={() => navigate("/")}
             alt="wenyfour logo"
-            style={{ width: "11rem" }}
+            style={{ width: "10rem" }}
           />
         </Col>
         <Col

@@ -97,7 +97,7 @@ export default function SignUpp() {
             <img
               src="https://res.cloudinary.com/dx5ilizca/image/upload/v1695924744/41_heqf9s.svg"
               alt="wenyfour logo"
-              style={{ width: 200 }}
+              style={{ width: 150 }}
             />
           </div>
           <div className="d-flex justify-content-between" style={{ gap: 30 }}>

@@ -128,7 +128,8 @@ export default function PublishRide() {
         <Col xl={4} lg={4} md={4} sm={12} xs={12}></Col>
         <Col xl={4} lg={4} md={4} sm={12} xs={12}>
           {/* {JSON.stringify(cars)} */}
-          {/* {JSON.stringify(publishRide)} */}
+
+          {JSON.stringify(publishRide)}
           {loading ? (
             <div className="text-center">
               <span className="">Loading data...</span>
@@ -155,6 +156,7 @@ export default function PublishRide() {
                   className="input_field"
                   type="time"
                   name="time"
+                  step="1"
                   value={publishRide.time}
                   onChange={handleChange}
                 />
@@ -253,7 +255,7 @@ export default function PublishRide() {
                   <button
                     disabled={loading}
                     className="app_button p-2"
-                    style={{ width: "100%",  }}
+                    style={{ width: "100%" }}
                   >
                     Publishing...
                   </button>
@@ -261,7 +263,7 @@ export default function PublishRide() {
                   <button
                     className="app_button p-2"
                     onClick={handleSubmit}
-                    style={{ width: "100%",  }}
+                    style={{ width: "100%" }}
                   >
                     Publish
                   </button>
