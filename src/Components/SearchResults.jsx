@@ -16,6 +16,7 @@ export default function SearchResults() {
   const start_loc = query.get("start_loc");
   const to_loc = query.get("to_loc");
   const _date = query.get("date");
+  const seats = query.get("seats");
   const navigate = useNavigate();
   const [availableRides, setAvailableRides] = useState([]);
   const userData = JSON.parse(localStorage.getItem("access_token"));
@@ -91,7 +92,11 @@ export default function SearchResults() {
                 <Card
                   key={index}
                   className="mb-3 results_card shadow-sm p-3"
-                  onClick={() => navigate("/ride-details")}
+                  onClick={() =>
+                    navigate(
+                      `/ride-details?id=${item?.id}&car_id=${item?.car_id}&driver_id=${item?.driver_id}&seats=${seats}`
+                    )
+                  }
                 >
                   <Row className="m-0">
                     <Col className="m-0" md={6} sm={7} xs={7}>

@@ -19,7 +19,8 @@ export default function SearchRide() {
     setSearchData({ ...searchData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     // console.log(searchData);
     navigate(
       `/search-results?start_loc=${searchData.from}&to_loc=${searchData.to}&date=${searchData.date}&seats=${searchData.numberOfSeats}`
@@ -47,92 +48,97 @@ export default function SearchRide() {
 
   return (
     <div className="p-3 mt-5">
-      {JSON.stringify(searchData)}
+      {/* {JSON.stringify(searchData)}  */}
       <h4
         className="text-center page_title"
         style={{ fontWeight: 900, fontSize: 40 }}
       >
         Search for ride
       </h4>
-      <div
-        className="mt-3 d-flex justify-content-center search_ride_inputs_div"
-        style={{ gap: 10 }}
-      >
-        <div>
-          {/* <LivingFrom/> */}
-          <label className="label">Leaving from</label>
-          <select
-            className="input_field search_ride_input"
-            name="from"
-            required
-            value={searchData.from}
-            onChange={handleChange}
-          >
-            <option style={{ color: "grey" }}></option>
-            <option>Kano</option>
-            <option>Jigawa</option>
-            <option>Bavaria</option>
-            <option>Hessen</option>
-            <option>London</option>
-            <option>Sokoto</option>
-            <option>Zaria</option>
-            <option>Manchester</option>
-          </select>
-        </div>
-        <div>
-          <label className="label">Going to</label>
-          <select
-            className="input_field search_ride_input"
-            name="to"
-            value={searchData.to}
-            required
-            onChange={handleChange}
-          >
-            <option style={{ color: "grey" }}></option>
-            <option>Kano</option>
-            <option>Jigawa</option>
-            <option>Bavaria</option>
-            <option>Hessen</option>
-            <option>Manchester</option>
-            <option>Zamfara</option>
-            <option>London</option>
-            <option>Kaduna</option>
-          </select>
-        </div>
-        <div>
-          <label className="label">Today</label>
-          <input
-            className="input_field search_ride_input"
-            type="date"
-            name="date"
-            value={searchData.date}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label className="label">Seats</label>
-          <input
-            className="input_field search_ride_input"
-            type="number"
-            name="numberOfSeats"
-            value={searchData.numberOfSeats}
-            onChange={handleChange}
-            min={1}
-            max={8}
-            required
-          />
-        </div>
-      </div>
-      <div className="m-0 text-center mt-3">
-        <button
-          className="app_button"
-          onClick={handleSubmit}
-          style={{ padding: "20px 40px" }}
+      <form onSubmit={handleSubmit}>
+        <div
+          className="mt-3 d-flex justify-content-center search_ride_inputs_div"
+          style={{ gap: 10 }}
         >
-          GO
-        </button>
-      </div>
+          <div>
+            {/* <LivingFrom/> */}
+            <label className="label">Leaving from</label>
+            <select
+              className="input_field search_ride_input"
+              name="from"
+              required
+              value={searchData.from}
+              onChange={handleChange}
+            >
+              <option style={{ color: "grey" }}></option>
+              <option>Kano</option>
+              <option>Jigawa</option>
+              <option>Bavaria</option>
+              <option>Hessen</option>
+              <option>London</option>
+              <option>Sokoto</option>
+              <option>Zaria</option>
+              <option>Manchester</option>
+              <option>Ibadan</option>
+              <option>Suleja</option>
+              <option>Ressss</option>
+            </select>
+          </div>
+          <div>
+            <label className="label">Going to</label>
+            <select
+              className="input_field search_ride_input"
+              name="to"
+              value={searchData.to}
+              required
+              onChange={handleChange}
+            >
+              <option style={{ color: "grey" }}></option>
+              <option>Kano</option>
+              <option>Jigawa</option>
+              <option>Bavaria</option>
+              <option>Hessen</option>
+              <option>Manchester</option>
+              <option>Zamfara</option>
+              <option>London</option>
+              <option>Kaduna</option>
+              <option>Ibadan</option>
+              <option>Suleja</option>
+              <option>Apiiiii</option>
+            </select>
+          </div>
+          <div>
+            <label className="label">Today</label>
+            <input
+              className="input_field search_ride_input"
+              type="date"
+              min="2023-10-05"
+              name="date"
+              value={searchData.date}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <label className="label">Seats</label>
+            <input
+              className="input_field search_ride_input"
+              type="number"
+              name="numberOfSeats"
+              value={searchData.numberOfSeats}
+              onChange={handleChange}
+              min={1}
+              max={8}
+              required
+            />
+          </div>
+        </div>
+        <div className="m-0 text-center mt-3">
+          <button className="app_button" style={{ padding: "20px 40px" }}>
+            GO
+          </button>
+        </div>
+      </form>
     </div>
   );
 }

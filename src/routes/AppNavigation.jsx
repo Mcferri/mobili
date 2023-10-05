@@ -22,6 +22,7 @@ import CreateCar from "../Components/CreateCar";
 import SignupMessage from "../Components/SignupMessage";
 import EditCar from "../Components/EditCar";
 import MyVehicles from "../Components/MyVehicles";
+import MyBookings from "../Components/MyBookings";
 
 function AppNavigation() {
   let element = useRoutes([
@@ -59,6 +60,10 @@ function AppNavigation() {
           element: <RideRequests />,
         },
         {
+          path: "/my-bookings",
+          element: <MyBookings />,
+        },
+        {
           path: "/rider-profile",
           element: <RiderProfile />,
         },
@@ -79,7 +84,7 @@ function AppNavigation() {
           element: <PaymentMethod />,
         },
         {
-          path: "/my-rides",
+          path: "/published-rides",
           element: <YourRides />,
         },
         {

@@ -61,7 +61,7 @@ export default function PublishRide() {
       .then((response) => {
         console.log(response?.status);
         if (response?.status === 201) {
-          navigate("/my-rides");
+          navigate("/published-rides");
         }
         setLoading(false);
       })
@@ -129,147 +129,156 @@ export default function PublishRide() {
         <Col xl={4} lg={4} md={4} sm={12} xs={12}>
           {/* {JSON.stringify(cars)} */}
 
-          {JSON.stringify(publishRide)}
+          {/* {JSON.stringify(publishRide)} */}
           {loading ? (
             <div className="text-center">
-              <span className="">Loading data...</span>
+              <span className="">Loading...</span>
             </div>
           ) : (
-            <Row>
-              <Col md={6} className="mt-3">
-                {/* {JSON.stringify(xtoken)} */}
-                {/* {JSON.stringify(loggedInUser)} */}
-                <label className="label">When are you leaving?</label>
-                <input
-                  className="input_field"
-                  type="date"
-                  name="date"
-                  value={publishRide.date}
-                  onChange={handleChange}
-                />
-              </Col>
-              <Col md={6} className="mt-3">
-                <label className="label">
-                  When's the passenger pickup time?
-                </label>
-                <input
-                  className="input_field"
-                  type="time"
-                  name="time"
-                  step="1"
-                  value={publishRide.time}
-                  onChange={handleChange}
-                />
-              </Col>
-              <Col md={6} className="mt-3">
-                <label className="label">Leaving from</label>
-                <input
-                  className="input_field"
-                  type="text"
-                  name="from_location"
-                  value={publishRide.from_location}
-                  onChange={handleChange}
-                />
-              </Col>
-              <Col md={6} className="mt-3">
-                <label className="label">Going to</label>
-                <input
-                  className="input_field"
-                  type="text"
-                  name="to_location"
-                  value={publishRide.to_location}
-                  onChange={handleChange}
-                />
-              </Col>
-              <Col md={6} className="mt-3">
-                <label className="label">Exact meeting point</label>
-                <input
-                  className="input_field"
-                  type="text"
-                  name="pickup_location"
-                  value={publishRide.pickup_location}
-                  onChange={handleChange}
-                />
-              </Col>
-              <Col md={6} className="mt-3">
-                <label className="label">Exact drop-off point</label>
-                <input
-                  className="input_field"
-                  type="text"
-                  name="dropoff_location"
-                  value={publishRide.dropoff_location}
-                  onChange={handleChange}
-                />
-              </Col>
-              <Col md={6} className="mt-3">
-                <label className="label">Select your gender</label>
-                <select
-                  className="input_field"
-                  name="gender"
-                  value={publishRide.gender}
-                  onChange={handleChange}
-                >
-                  <option>--gender--</option>
-                  <option>Male</option>
-                  <option>Female</option>
-                </select>
-              </Col>
-              <Col md={6} className="mt-3">
-                <label className="label">Price per seat</label>
-                <input
-                  className="input_field"
-                  type="number"
-                  name="seat_price"
-                  value={publishRide.seat_price}
-                  onChange={handleChange}
-                />
-              </Col>
-              <Col md={6} className="mt-3">
-                <label className="label">Number of Seats</label>
-                <input
-                  className="input_field"
-                  type="number"
-                  name="seats"
-                  value={publishRide.seats}
-                  onChange={handleChange}
-                />
-              </Col>
-              <Col md={6} className="mt-3">
-                <label className="label">Select a car</label>
-                <select
-                  className="input_field"
-                  name="car_id"
-                  value={publishRide.car_id}
-                  onChange={handleChange}
-                >
-                  <option value="">--car--</option>
-                  {cars.map((car) => (
-                    <option value={car.id} key={car.id}>
-                      {car.brand} {car.model}
-                    </option>
-                  ))}
-                </select>
-              </Col>
-              <div className="mt-3">
-                {loading ? (
-                  <button
-                    disabled={loading}
-                    className="app_button p-2"
-                    style={{ width: "100%" }}
+            <form onSubmit={handleSubmit}>
+              <Row>
+                <Col md={6} className="mt-3">
+                  {/* {JSON.stringify(xtoken)} */}
+                  {/* {JSON.stringify(loggedInUser)} */}
+                  <label className="label">When are you leaving?</label>
+                  <input
+                    className="input_field"
+                    type="date"
+                    required
+                    name="date"
+                    min="2023-10-05"
+                    value={publishRide.date}
+                    onChange={handleChange}
+                  />
+                </Col>
+                <Col md={6} className="mt-3">
+                  <label className="label">
+                    When's the passenger pickup time?
+                  </label>
+                  <input
+                    required
+                    className="input_field"
+                    type="time"
+                    name="time"
+                    step="1"
+                    value={publishRide.time}
+                    onChange={handleChange}
+                  />
+                </Col>
+                <Col md={6} className="mt-3">
+                  <label className="label">Leaving from</label>
+                  <input
+                    className="input_field"
+                    required
+                    type="text"
+                    name="from_location"
+                    value={publishRide.from_location}
+                    onChange={handleChange}
+                  />
+                </Col>
+                <Col md={6} className="mt-3">
+                  <label className="label">Going to</label>
+                  <input
+                    className="input_field"
+                    required
+                    type="text"
+                    name="to_location"
+                    value={publishRide.to_location}
+                    onChange={handleChange}
+                  />
+                </Col>
+                <Col md={6} className="mt-3">
+                  <label className="label">Exact meeting point</label>
+                  <input
+                    className="input_field"
+                    required
+                    type="text"
+                    name="pickup_location"
+                    value={publishRide.pickup_location}
+                    onChange={handleChange}
+                  />
+                </Col>
+                <Col md={6} className="mt-3">
+                  <label className="label">Exact drop-off point</label>
+                  <input
+                    className="input_field"
+                    required
+                    type="text"
+                    name="dropoff_location"
+                    value={publishRide.dropoff_location}
+                    onChange={handleChange}
+                  />
+                </Col>
+                <Col md={6} className="mt-3">
+                  <label className="label">Select your gender</label>
+                  <select
+                    className="input_field"
+                    name="gender"
+                    value={publishRide.gender}
+                    onChange={handleChange}
                   >
-                    Publishing...
-                  </button>
-                ) : (
-                  <button
-                    className="app_button p-2"
-                    onClick={handleSubmit}
-                    style={{ width: "100%" }}
+                    <option>--gender--</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+                </Col>
+                <Col md={6} className="mt-3">
+                  <label className="label">Price per seat</label>
+                  <input
+                    className="input_field"
+                    type="number"
+                    min={0}
+                    name="seat_price"
+                    value={publishRide.seat_price}
+                    onChange={handleChange}
+                  />
+                </Col>
+                <Col md={6} className="mt-3">
+                  <label className="label">Number of Seats</label>
+                  <input
+                    className="input_field"
+                    type="number"
+                    name="seats"
+                    value={publishRide.seats}
+                    onChange={handleChange}
+                  />
+                </Col>
+                <Col md={6} className="mt-3">
+                  <label className="label">Select a car</label>
+                  <select
+                    className="input_field"
+                    name="car_id"
+                    value={publishRide.car_id}
+                    onChange={handleChange}
                   >
-                    Publish
-                  </button>
-                )}
-              </div>
-            </Row>
+                    <option value="">--car--</option>
+                    {cars.map((car) => (
+                      <option value={car.id} key={car.id}>
+                        {car.brand} {car.model}
+                      </option>
+                    ))}
+                  </select>
+                </Col>
+                <div className="mt-3">
+                  {loading ? (
+                    <button
+                      disabled={loading}
+                      className="app_button p-2"
+                      style={{ width: "100%" }}
+                    >
+                      Publishing...
+                    </button>
+                  ) : (
+                    <button
+                      className="app_button p-2"
+                      style={{ width: "100%" }}
+                    >
+                      Publish
+                    </button>
+                  )}
+                </div>
+              </Row>
+            </form>
           )}
         </Col>
         <Col xl={4} lg={4} md={4} sm={12} xs={12}></Col>

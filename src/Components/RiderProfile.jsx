@@ -1,10 +1,18 @@
 import React, { useEffect } from "react";
 //https://res.cloudinary.com/dx5ilizca/image/upload/v1692800347/profile_epnaqt.png
 import { Col, Row } from "reactstrap";
-import { MdArrowForwardIos } from "react-icons/md";
+import { MdAddCall, MdArrowForwardIos } from "react-icons/md";
+import { AiOutlineCalendar } from "react-icons/ai";
 import { BsShieldFillCheck } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "../helpers/helpers";
+import moment from "moment";
 function RiderProfile() {
+  const query = useQuery();
+  const name = query.get("name");
+  const email = query.get("email");
+  const phone = query.get("phone");
+  const created_at = query.get("created_at");
   const navigate = useNavigate();
   useEffect(() => {
     if (!localStorage.getItem("access_token")) {
@@ -18,7 +26,7 @@ function RiderProfile() {
         <Col md={6} className="">
           <div className="d-flex align-item-center justify-content-between">
             <div>
-              <h5 className="m-0">Yasir Yakasai</h5>
+              <h5 className="m-0">{name}</h5>
               <p>29 y/o</p>
             </div>
             <div>
@@ -30,50 +38,48 @@ function RiderProfile() {
               />
             </div>
           </div>
-          <div className="d-flex mt-4 align-item-center justify-content-between">
+          {/* <div className="d-flex mt-4 align-item-center justify-content-between">
             <div>
               <p>5/5 - 1 rating</p>
             </div>
             <div>
-              {/* <MdArrowForwardIos
+              <MdArrowForwardIos
                 size="1.2rem"
                 className="arrow "
-              /> */}
+              />
             </div>
-          </div>
+          </div> */}
           <hr className="hr" />
-          <div className="mt-3">
-            <span className="">
-              <BsShieldFillCheck
-                color="#0D6EFD"
-                size="1.3rem"
-                className="m-0"
-              />{" "}
-              Confirmed email
-            </span>
+          <div className="mt-3 mb-3 d-flex align-items-center gap-2">
+            <BsShieldFillCheck color="#0D6EFD" size="1.3rem" className="m-0" />
+            <p className="m-0">Confirmed email</p>
           </div>
-          <div className="mt-3">
-            <span className="">
-              <BsShieldFillCheck
-                color="#0D6EFD"
-                size="1.3rem"
-                className="m-0"
-              />{" "}
-              Confirmed phone number
-            </span>
+          <div className="d-flex align-items-center gap-2">
+            <MdAddCall color="#0D6EFD" size="1.3rem" className="m-0" />{" "}
+            <a
+              style={{ textDecoration: "none", color: "black" }}
+              href={`tel:${phone}`}
+            >
+              Contact {name}
+            </a>
           </div>
           <div className="mt-3 divider"></div>
           <div className="mt-3">
-            <h6 className="m-0">About Yasir</h6>
+            <h6 className="">About {name}</h6>
             <p className="small"> I'm chatty when I feel comfortable</p>
           </div>
           <div className="mt-3 mb-3 divider"></div>
           <p>2 rides published</p>
-          <p>Member since February 2010</p>
+          <div className="d-flex align-items-center gap-2">
+            <AiOutlineCalendar color="#0D6EFD" size="1.3rem" />
+            <p className="m-0">
+              Joined {moment(created_at).format("MMMM, YYYY")}
+            </p>
+          </div>
           <div className="mt-3 divider"></div>
           <p
             className="report_text mt-3"
-            onClick={() => navigate("/report-ride")}
+            onClick={() => navigate(`/report-ride`)}
           >
             Report Ride
           </p>

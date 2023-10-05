@@ -43,14 +43,14 @@ export default function YourRides() {
         className="text-center page_title"
         style={{ fontWeight: 900, fontSize: 40 }}
       >
-        Your rides
+        Published rides
       </h4>
       <Row className="">
         <Col md={3}></Col>
         <Col md={6}>
           {loading ? (
             <div className="text-center">
-              <span className="">Loading your cars...</span>
+              <span className="">Loading your rides...</span>
             </div>
           ) : (
             <>
@@ -58,8 +58,8 @@ export default function YourRides() {
               {rides?.map((item, index) => (
                 <Card
                   key={index}
-                  className="mb-3 results_card shadow-sm p-3"
-                  onClick={() => navigate("/ride-details")}
+                  className="mb-3 mt-3 results_card shadow-sm p-3"
+                  onClick={() => navigate(`/ride-requests?ride_id=${item?.id}`)}
                 >
                   <Row>
                     <Col md={6} sm={8} xs={8}>
@@ -78,13 +78,13 @@ export default function YourRides() {
                         </div>
                         <div>
                           <p className="rides_avail">
-                            <span style={{ fontWeight: 20, color: "grey" }}>
+                            <span style={{ color: "grey" }}>
                               {item?.pickup_location},
                             </span>{" "}
                             {item?.from_location}
                           </p>
                           <p className="rides_avail">
-                            <span style={{ fontWeight: 20, color: "grey" }}>
+                            <span style={{ color: "grey" }}>
                               {item?.dropoff_location},
                             </span>{" "}
                             {item?.to_location}

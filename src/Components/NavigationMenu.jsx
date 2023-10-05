@@ -66,12 +66,7 @@ export default function NavigationMenu() {
           >
             <BsPlus />
           </button>
-          {/* <button
-            className="app_button second_app_button"
-            onClick={() => navigate(`/ride-requests`)}
-          >
-            Ride requests
-          </button> */}
+
           <AiOutlineBell
             style={{ margin: 0, cursor: "pointer" }}
             size="1.6rem"
@@ -96,13 +91,13 @@ export default function NavigationMenu() {
             </DropdownToggle>
             <DropdownMenu className="shadow profile_dropdown p-3">
               <div
-                onClick={() => navigate("/my-rides")}
+                onClick={() => navigate("/published-rides")}
                 style={{ gap: 10 }}
                 className="profile_drop_item d-flex justify-content-between align-items-center"
               >
                 <div>
                   {/* <PiCarSimpleLight className="text-secondary" /> */}
-                  Published rides{" "}
+                  Published Rides{" "}
                 </div>
                 <div>
                   <MdKeyboardArrowRight
@@ -112,24 +107,7 @@ export default function NavigationMenu() {
                   />
                 </div>
               </div>
-              <hr />
-              <div
-                onClick={() => navigate("/my-rides")}
-                style={{ gap: 10 }}
-                className="profile_drop_item d-flex justify-content-between align-items-center"
-              >
-                <div>
-                  {/* <PiCarSimpleLight className="text-secondary" /> */}
-                  My requests{" "}
-                </div>
-                <div>
-                  <MdKeyboardArrowRight
-                    size={30}
-                    className="text-secondary"
-                    style={{ cursor: "pointer" }}
-                  />
-                </div>
-              </div>
+
               <hr />
               <div
                 onClick={() => navigate("/my-vehicles")}
@@ -138,7 +116,7 @@ export default function NavigationMenu() {
               >
                 <div>
                   {/* <PiCarSimpleLight className="text-secondary" /> */}
-                  My cars{" "}
+                  My Vehicles{" "}
                 </div>
                 <div>
                   <MdKeyboardArrowRight
@@ -152,14 +130,11 @@ export default function NavigationMenu() {
               <div
                 style={{ gap: 10 }}
                 onClick={() => {
-                  navigate("/profile");
+                  navigate("/my-bookings");
                 }}
                 className="profile_drop_item d-flex justify-content-between align-items-center"
               >
-                <div>
-                  {/* <AiOutlineUser className="text-secondary" /> */}
-                  Profile{" "}
-                </div>
+                <div>My Bookings </div>
                 <div>
                   <MdKeyboardArrowRight
                     size={30}
@@ -173,10 +148,7 @@ export default function NavigationMenu() {
                 style={{ gap: 10 }}
                 className="profile_drop_item d-flex justify-content-between align-items-center"
               >
-                <div>
-                  {/* <AiOutlineUser className="text-secondary" /> */}
-                  Chats{" "}
-                </div>
+                <div>Chats </div>
                 <div>
                   <MdKeyboardArrowRight
                     size={30}
@@ -190,10 +162,7 @@ export default function NavigationMenu() {
                 style={{ gap: 10 }}
                 className="profile_drop_item d-flex justify-content-between align-items-center"
               >
-                <div>
-                  {/* <AiOutlineUser className="text-secondary" /> */}
-                  Payment & refunds{" "}
-                </div>
+                <div>Payment & Refunds </div>
                 <div>
                   <MdKeyboardArrowRight
                     size={30}
