@@ -36,16 +36,13 @@ export const loginFailure = (errorMessage) => ({
 export const signup =
   (email, name, phone, password, nin) => async (dispatch) => {
     try {
-      const response = await axios.post(
-        "http://34.239.137.93/api/auth/users/create",
-        {
-          email,
-          name,
-          phone,
-          nin,
-          password,
-        }
-      );
+      const response = await axios.post(`${api}/api/auth/users/create`, {
+        email,
+        name,
+        phone,
+        nin,
+        password,
+      });
       // const {
       //   email: userEmail,
       //   access_token,
@@ -84,13 +81,10 @@ export const signup =
 
 export const login = (email, password) => async (dispatch) => {
   try {
-    const response = await axios.post(
-      `${api}/auth/users/login`,
-      {
-        email,
-        password,
-      }
-    );
+    const response = await axios.post(`${api}/auth/users/login`, {
+      email,
+      password,
+    });
 
     const {
       email: userEmail,
