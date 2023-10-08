@@ -1,5 +1,6 @@
 // src/actions.js
 import axios from "axios";
+import { api } from "../helper/apis";
 
 export const signupSuccess = (user) => ({
   type: "SIGNUP_SUCCESS",
@@ -84,7 +85,7 @@ export const signup =
 export const login = (email, password) => async (dispatch) => {
   try {
     const response = await axios.post(
-      "http://34.239.137.93/api/auth/users/login",
+      `${api}/auth/users/login`,
       {
         email,
         password,
