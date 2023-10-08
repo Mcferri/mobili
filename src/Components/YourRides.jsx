@@ -49,9 +49,17 @@ export default function YourRides() {
         <Col md={3}></Col>
         <Col md={6}>
           {loading ? (
-            <div className="text-center">
-              <span className="">Loading your rides...</span>
-            </div>
+           <div
+          class="text-center mt-5 d-flex align-items-center justify-content-center gap-2"
+          style={{ color: "#0d6efd" }}
+        >
+          <span
+            style={{ width: "2rem", height: "2rem" }}
+            class="spinner-border"
+            role="status"
+            aria-hidden="true"
+          ></span>
+        </div>
           ) : (
             <>
               {/* {JSON.stringify(rides)} */}
@@ -100,6 +108,15 @@ export default function YourRides() {
                   </Row>
                 </Card>
               ))}
+              {rides.length === 0 ? (
+                <div className="text-center mt-3 mb-5">
+                  <span className="">
+                    You don't have any published ride(s) yet
+                  </span>
+                </div>
+              ) : (
+                ""
+              )}
             </>
           )}
         </Col>

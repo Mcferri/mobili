@@ -74,8 +74,16 @@ export default function MyVehicles() {
           <Col md={4}></Col>
           <Col md={4}>
             {loading ? (
-              <div className="text-center">
-                <span className="">Loading your vehicles...</span>
+              <div
+                class="text-center mt-5 d-flex align-items-center justify-content-center gap-2"
+                style={{ color: "#0d6efd" }}
+              >
+                <span
+                  style={{ width: "2rem", height: "2rem" }}
+                  class="spinner-border"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
               </div>
             ) : (
               <div className="mt-3">
@@ -88,7 +96,6 @@ export default function MyVehicles() {
                       <p
                         className="m-0"
                         style={{
-                        
                           textTransform: "uppercase",
                           fontWeight: "bold",
                         }}

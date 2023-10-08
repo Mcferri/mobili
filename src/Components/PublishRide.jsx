@@ -4,11 +4,12 @@ import { useSelector } from "react-redux";
 import { Col, Row, Modal } from "reactstrap";
 import { api } from "../helper/apis";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
 
 export default function PublishRide() {
   const [modal, setModal] = useState(false);
   const formData = {
-    date: "",
+    date: moment().format("YYYY-MM-DD"),
     dropoff_location: "",
     from_location: "",
     gender: "",
@@ -129,10 +130,18 @@ export default function PublishRide() {
         <Col xl={4} lg={4} md={4} sm={12} xs={12}>
           {/* {JSON.stringify(cars)} */}
 
-          {/* {JSON.stringify(publishRide)} */}
+          {JSON.stringify(publishRide)}
           {loading ? (
-            <div className="text-center">
-              <span className="">Loading...</span>
+            <div
+              class="text-center mt-5 d-flex align-items-center justify-content-center gap-2"
+              style={{ color: "#0d6efd" }}
+            >
+              <span
+                style={{ width: "2rem", height: "2rem" }}
+                class="spinner-border"
+                role="status"
+                aria-hidden="true"
+              ></span>
             </div>
           ) : (
             <form onSubmit={handleSubmit}>
@@ -153,17 +162,42 @@ export default function PublishRide() {
                 </Col>
                 <Col md={6} className="mt-3">
                   <label className="label">
-                    When's the passenger pickup time?
+                    When is the passenger's pickup time?
                   </label>
-                  <input
+                  <select
                     required
                     className="input_field"
-                    type="time"
                     name="time"
-                    step="1"
                     value={publishRide.time}
                     onChange={handleChange}
-                  />
+                  >
+                    <option>-</option>
+                    <option>12:00 AM</option>
+                    <option>1:00 AM</option>
+                    <option>2:00 AM</option>
+                    <option>3:00 AM</option>
+                    <option>4:00 AM</option>
+                    <option>5:00 AM</option>
+                    <option>6:00 AM</option>
+                    <option>7:00 AM</option>
+                    <option>8:00 AM</option>
+                    <option>8:00 AM</option>
+                    <option>9:00 AM</option>
+                    <option>10:00 AM</option>
+                    <option>11:00 AM</option>
+                    <option>12:00 PM</option>
+                    <option>1:00 PM</option>
+                    <option>2:00 PM</option>
+                    <option>3:00 PM</option>
+                    <option>4:00 PM</option>
+                    <option>5:00 PM</option>
+                    <option>6:00 PM</option>
+                    <option>7:00 PM</option>
+                    <option>8:00 PM</option>
+                    <option>9:00 PM</option>
+                    <option>10:00 PM</option>
+                    <option>11:00 PM</option>
+                  </select>
                 </Col>
                 <Col md={6} className="mt-3">
                   <label className="label">Leaving from</label>
@@ -212,12 +246,13 @@ export default function PublishRide() {
                 <Col md={6} className="mt-3">
                   <label className="label">Select your gender</label>
                   <select
+                    required
                     className="input_field"
                     name="gender"
                     value={publishRide.gender}
                     onChange={handleChange}
                   >
-                    <option>--gender--</option>
+                    <option>-</option>
                     <option>Male</option>
                     <option>Female</option>
                   </select>
@@ -235,13 +270,17 @@ export default function PublishRide() {
                 </Col>
                 <Col md={6} className="mt-3">
                   <label className="label">Number of Seats</label>
-                  <input
+                  <select
                     className="input_field"
-                    type="number"
                     name="seats"
                     value={publishRide.seats}
                     onChange={handleChange}
-                  />
+                  >
+                    <option>-</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                  </select>
                 </Col>
                 <Col md={6} className="mt-3">
                   <label className="label">Select a car</label>
@@ -251,7 +290,7 @@ export default function PublishRide() {
                     value={publishRide.car_id}
                     onChange={handleChange}
                   >
-                    <option value="">--car--</option>
+                    <option value="">-</option>
                     {cars.map((car) => (
                       <option value={car.id} key={car.id}>
                         {car.brand} {car.model}

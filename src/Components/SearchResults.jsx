@@ -66,8 +66,16 @@ export default function SearchResults() {
       </h4>
       {/* {JSON.stringify(availableRides)} */}
       {loading ? (
-        <div className="text-center">
-          <span className="">Loading rides...</span>
+        <div
+          class="text-center mt-5 d-flex align-items-center justify-content-center gap-2"
+          style={{ color: "#0d6efd" }}
+        >
+          <span
+            style={{ width: "2rem", height: "2rem" }}
+            class="spinner-border"
+            role="status"
+            aria-hidden="true"
+          ></span>
         </div>
       ) : (
         <Row>

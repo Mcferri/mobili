@@ -19,7 +19,11 @@ export default function MyBookings() {
   const userData = JSON.parse(localStorage.getItem("access_token"));
   const xtoken = userData?.access_token;
   const userId = userData?.user_id;
-
+  useEffect(() => {
+    if (!localStorage.getItem("access_token")) {
+      navigate("/auth");
+    }
+  }, []);
   useEffect(() => {
     if (xtoken) {
       setLoading(true);
@@ -78,12 +82,20 @@ export default function MyBookings() {
           {/* {JSON.stringify(ridersArray)} */}
           <Col xl={3} lg={3} md={3} sm={12} xs={12}></Col>
           {loading ? (
-            <div className="text-center">
-              <p>Loading ride details...</p>
+            <div
+              class="text-center mt-5 d-flex align-items-center justify-content-center gap-2"
+              style={{ color: "#0d6efd" }}
+            >
+              <span
+                style={{ width: "2rem", height: "2rem" }}
+                class="spinner-border"
+                role="status"
+                aria-hidden="true"
+              ></span>
             </div>
           ) : (
             <Col xl={6} lg={6} md={6} sm={12} xs={12}>
-              {JSON.stringify(rideDetails)}
+              {/* {JSON.stringify(rideDetails)} */}
               {/* {JSON.stringify(ridersArray)} */}
               {rideDetails.map((item, index) => (
                 <div className="mt-3" key={index}>

@@ -130,19 +130,30 @@ export default function CreateCar() {
                       onChange={handleChange}
                     />
                   </Col>
+
                   <div className="text-center mt-3">
                     {loading ? (
                       <button
                         disabled={loading}
-                        className="app_button p-2"
-                        style={{ width: "100%"}}
+                        className="app_button"
+                        style={{ width: "100%" }}
                       >
-                        Loading...
+                        <div
+                          class="text-centerd-flex align-items-center justify-content-center gap-2"
+                          style={{ color: "white" }}
+                        >
+                          <span
+                            style={{ width: "1rem", height: "1rem" }}
+                            class="spinner-border"
+                            role="status"
+                            aria-hidden="true"
+                          ></span>
+                        </div>
                       </button>
                     ) : (
                       <button
-                        className="app_button p-2"
-                        style={{ width: "100%"}}
+                        className="app_button"
+                        style={{ width: "100%" }}
                       >
                         Create
                       </button>

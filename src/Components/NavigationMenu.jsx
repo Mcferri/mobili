@@ -76,6 +76,7 @@ export default function NavigationMenu() {
             className="result profile"
             alt="profile_pic"
             style={{ width: 30, cursor: "pointer" }}
+            onClick={() => navigate("/profile")}
           />
           <Dropdown
             className="profile_dropdown_body"

@@ -142,16 +142,23 @@ export default function EditCar() {
                     {loading ? (
                       <button
                         disabled={loading}
-                        className="app_button p-3"
-                        style={{ width: "100%", fontWeight: "bold" }}
+                        className="app_button"
+                        style={{ width: "100%" }}
                       >
-                        Saving...
+                        <div
+                          class="text-centerd-flex align-items-center justify-content-center gap-2"
+                          style={{ color: "white" }}
+                        >
+                          <span
+                            style={{ width: "1rem", height: "1rem" }}
+                            class="spinner-border"
+                            role="status"
+                            aria-hidden="true"
+                          ></span>
+                        </div>
                       </button>
                     ) : (
-                      <button
-                        className="app_button p-3"
-                        style={{ width: "100%", fontWeight: "bold" }}
-                      >
+                      <button className="app_button" style={{ width: "100%" }}>
                         Save
                       </button>
                     )}

@@ -80,6 +80,7 @@ export default function SearchRide() {
               <option>Zaria</option>
               <option>Manchester</option>
               <option>Ibadan</option>
+              <option>Birmingham</option>
               <option>Suleja</option>
               <option>Ressss</option>
             </select>
@@ -104,6 +105,7 @@ export default function SearchRide() {
               <option>Kaduna</option>
               <option>Ibadan</option>
               <option>Suleja</option>
+              <option>Birmingham</option>
               <option>Apiiiii</option>
             </select>
           </div>
